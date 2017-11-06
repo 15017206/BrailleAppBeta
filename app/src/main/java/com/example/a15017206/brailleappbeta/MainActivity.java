@@ -3,6 +3,7 @@ package com.example.a15017206.brailleappbeta;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,7 +12,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    String TAG = "";
+    String TAG = ">>";
     ArrayList<String> arraylist_output2 = new ArrayList<>();
 
     @Override
@@ -20,8 +21,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         doTranslateEtoB obj1 = new doTranslateEtoB();
-        obj1.separateToIndividualArrays("Ben & I LOVES eating 3 ice-creams. Don't you, Tom?");
-        System.out.println(obj1);
+        arraylist_output2 = obj1.separateToIndividualArrays("Ben & I LOVES eating 3 ice-creams. Don't you, Tom? RIGHT?");
+        obj1.detectCapitalisation(arraylist_output2);
+
 //        obj1.findMatch();
 
         //Sample test to split words with hyphens ie. ice-cream:
@@ -98,17 +100,43 @@ public class MainActivity extends AppCompatActivity {
             }
 
              System.out.println(arraylist_output);
+
             return arraylist_output;
             // return Integer.parseInt(c, 2);
         }
 
         // 2. Detect capitalisation of whole words or Capital letters only. Split to detect where passage capitalisation ends
-        private String detectCapitalisation(){
-            boolean detect_capital_letter = Pattern.matches("", "");
-            boolean detect_capital_word = Pattern.matches("", "");
+        private String detectCapitalisation(ArrayList input_arraylist){
+
+            Log.i(TAG, "detectCapitalisation: "+ input_arraylist);
+
+            boolean detect_capital_letter = false;
+            boolean detect_capital_word = false;
+
+            for (int i = 0; i<input_arraylist.size(); i++){
+
+                //detects for capital letters in front of a word
+                if (detect_capital_letter = Pattern.matches("\\b[A-Z]\\w[a-z]*\\b", ""+input_arraylist.get(i))){
+                        input_arraylist.add(i, 64);
+                            i++;
+                }
 
 
+                // detects for capital words
+//                else if (detect_capital_word = Pattern.matches("\\b[A-Z]{2,}\\b", ""+input_arraylist.get(i))){
+//                    Log.i(TAG, "detectCapitalisation: true2   " + input_arraylist.get(i) + " position: " + i);
+//                }
+            }
 
+            for (int j=0; j < input_arraylist.size(); j++){
+                // detects for capital words
+                if (detect_capital_letter = Pattern.matches("\\b[A-Z]{2,}\\b", ""+input_arraylist.get(j))){
+                    input_arraylist.add(j, 65);
+                    j++;
+                }
+            }
+
+            Log.i(TAG, "detectCapitalisation: ended:" + input_arraylist);
             return "";
         }
 
