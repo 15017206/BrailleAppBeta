@@ -14,14 +14,14 @@ public class MainActivity extends AppCompatActivity {
     String TAG = "";
     ArrayList<String> arraylist_output2 = new ArrayList<>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         doTranslateEtoB obj1 = new doTranslateEtoB();
-        obj1.binaryToDecimal("Ben & I LOVES eating 3 ice-creams. Don't you, Tom?");
+        obj1.separateToIndividualArrays("Ben & I LOVES eating 3 ice-creams. Don't you, Tom?");
+        System.out.println(obj1);
 //        obj1.findMatch();
 
         //Sample test to split words with hyphens ie. ice-cream:
@@ -31,23 +31,20 @@ public class MainActivity extends AppCompatActivity {
 
     class doTranslateEtoB {
 
-        // Convert from binary to decimal -eg.  1100011 to 35
-        public ArrayList binaryToDecimal(String input_string) {
+        // 1. separate the strings to individual arrays
+        public ArrayList separateToIndividualArrays(String input_string) {
 
             // 1a. Using a .split(" ")-> ["THIS" "IS" "A" "PASSAGE." "I" "LOVE" "eating" "3" "ice-creams." "Don't" "you," "Tom?"]
-            // ArrayList<String> arraylist_output = new ArrayList<String>(Arrays.asList(input_string.split(" ")));
             ArrayList<String> arraylist_output = new ArrayList<String>(Arrays.asList(input_string.split(" ")));
 
             // for "-"
             for (int i = 0; i < arraylist_output.size(); i++) {
                 // filter out full stops ie. "boy."
-                if (arraylist_output.get(i).contains("-") && arraylist_output.get(i).length() > 1 ) {
-                    System.out.println(Arrays.toString(arraylist_output.get(i).split("((?<=[-])|(?=[-]))")) + " Position is: " + i);
+                if (arraylist_output.get(i).contains("-") && arraylist_output.get(i).length() > 1) {
                     ArrayList<String> temporary_arraylist = new ArrayList<String>(Arrays.asList(arraylist_output.get(i).split("((?<=[-])|(?=[-]))")));
-                    System.out.println(temporary_arraylist);
                     arraylist_output.remove(i);
-                    for (int j = 0; j<temporary_arraylist.size(); j++) {
-                        arraylist_output.add(i+j, temporary_arraylist.get(j));
+                    for (int j = 0; j < temporary_arraylist.size(); j++) {
+                        arraylist_output.add(i + j, temporary_arraylist.get(j));
                     }
                 }
             }
@@ -55,13 +52,11 @@ public class MainActivity extends AppCompatActivity {
             // for "."
             for (int i = 0; i < arraylist_output.size(); i++) {
                 // filter out full stops ie. "boy."
-                if (arraylist_output.get(i).contains(".") && arraylist_output.get(i).length() > 1 ) {
-                    System.out.println(Arrays.toString(arraylist_output.get(i).split("((?<=[.])|(?=[.]))")) + " Position is: " + i);
+                if (arraylist_output.get(i).contains(".") && arraylist_output.get(i).length() > 1) {
                     ArrayList<String> temporary_arraylist = new ArrayList<String>(Arrays.asList(arraylist_output.get(i).split("((?<=[.])|(?=[.]))")));
-                    System.out.println(temporary_arraylist);
                     arraylist_output.remove(i);
-                    for (int j = 0; j<temporary_arraylist.size(); j++) {
-                        arraylist_output.add(i+j, temporary_arraylist.get(j));
+                    for (int j = 0; j < temporary_arraylist.size(); j++) {
+                        arraylist_output.add(i + j, temporary_arraylist.get(j));
                     }
                 }
             }
@@ -69,13 +64,11 @@ public class MainActivity extends AppCompatActivity {
             // for "?"
             for (int i = 0; i < arraylist_output.size(); i++) {
                 // filter out full stops ie. "boy."
-                if (arraylist_output.get(i).contains("?") && arraylist_output.get(i).length() > 1 ) {
-                    System.out.println(Arrays.toString(arraylist_output.get(i).split("((?<=[?])|(?=[?]))")) + " Position is: " + i);
+                if (arraylist_output.get(i).contains("?") && arraylist_output.get(i).length() > 1) {
                     ArrayList<String> temporary_arraylist = new ArrayList<String>(Arrays.asList(arraylist_output.get(i).split("((?<=[?])|(?=[?]))")));
-                    System.out.println(temporary_arraylist);
                     arraylist_output.remove(i);
-                    for (int j = 0; j<temporary_arraylist.size(); j++) {
-                        arraylist_output.add(i+j, temporary_arraylist.get(j));
+                    for (int j = 0; j < temporary_arraylist.size(); j++) {
+                        arraylist_output.add(i + j, temporary_arraylist.get(j));
                     }
                 }
             }
@@ -83,13 +76,11 @@ public class MainActivity extends AppCompatActivity {
             // for ","
             for (int i = 0; i < arraylist_output.size(); i++) {
                 // filter out full stops ie. "boy."
-                if (arraylist_output.get(i).contains(",") && arraylist_output.get(i).length() > 1 ) {
-                    System.out.println(Arrays.toString(arraylist_output.get(i).split("((?<=[,])|(?=[,]))")) + " Position is: " + i);
+                if (arraylist_output.get(i).contains(",") && arraylist_output.get(i).length() > 1) {
                     ArrayList<String> temporary_arraylist = new ArrayList<String>(Arrays.asList(arraylist_output.get(i).split("((?<=[,])|(?=[,]))")));
-                    System.out.println(temporary_arraylist);
                     arraylist_output.remove(i);
-                    for (int j = 0; j<temporary_arraylist.size(); j++) {
-                        arraylist_output.add(i+j, temporary_arraylist.get(j));
+                    for (int j = 0; j < temporary_arraylist.size(); j++) {
+                        arraylist_output.add(i + j, temporary_arraylist.get(j));
                     }
                 }
             }
@@ -97,29 +88,28 @@ public class MainActivity extends AppCompatActivity {
             // for "'"
             for (int i = 0; i < arraylist_output.size(); i++) {
                 // filter out full stops ie. "boy."
-                if (arraylist_output.get(i).contains("'") && arraylist_output.get(i).length() > 1 ) {
-                    System.out.println(Arrays.toString(arraylist_output.get(i).split("((?<=['])|(?=[']))")) + " Position is: " + i);
+                if (arraylist_output.get(i).contains("'") && arraylist_output.get(i).length() > 1) {
                     ArrayList<String> temporary_arraylist = new ArrayList<String>(Arrays.asList(arraylist_output.get(i).split("((?<=['])|(?=[']))")));
-                    System.out.println(temporary_arraylist);
                     arraylist_output.remove(i);
-                    for (int j = 0; j<temporary_arraylist.size(); j++) {
-                        arraylist_output.add(i+j, temporary_arraylist.get(j));
+                    for (int j = 0; j < temporary_arraylist.size(); j++) {
+                        arraylist_output.add(i + j, temporary_arraylist.get(j));
                     }
                 }
             }
 
-            System.out.println(arraylist_output);
-            // 1b. Detect capitalisation of whole words or Capital letters only. Split to detect where passage capitalisation ends
-
-
-            // 1c. Detect of special characters behind(ie. "Hello!"), in front(ie. ""), or between words(ie. "ice-cream")
-
-
-            //System.out.println("this is the arraylist_output>>" + arraylist_output);
-
-
+             System.out.println(arraylist_output);
             return arraylist_output;
             // return Integer.parseInt(c, 2);
+        }
+
+        // 2. Detect capitalisation of whole words or Capital letters only. Split to detect where passage capitalisation ends
+        private String detectCapitalisation(){
+            boolean detect_capital_letter = Pattern.matches("", "");
+            boolean detect_capital_word = Pattern.matches("", "");
+
+
+
+            return "";
         }
 
         @NonNull
