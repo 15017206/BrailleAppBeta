@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // 2. Detect capitalisation of whole words or Capital letters only. Split to detect where passage capitalisation ends
-        private String detectCapitalisation(ArrayList input_arraylist){
+        private ArrayList detectCapitalisation(ArrayList input_arraylist){
 
             Log.i(TAG, "detectCapitalisation: "+ input_arraylist);
 
@@ -120,12 +120,6 @@ public class MainActivity extends AppCompatActivity {
                         input_arraylist.add(i, 64);
                             i++;
                 }
-
-
-                // detects for capital words
-//                else if (detect_capital_word = Pattern.matches("\\b[A-Z]{2,}\\b", ""+input_arraylist.get(i))){
-//                    Log.i(TAG, "detectCapitalisation: true2   " + input_arraylist.get(i) + " position: " + i);
-//                }
             }
 
             for (int j=0; j < input_arraylist.size(); j++){
@@ -137,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Log.i(TAG, "detectCapitalisation: ended:" + input_arraylist);
-            return "";
+            return input_arraylist;
         }
 
         @NonNull
