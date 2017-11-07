@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    String TAG = ">>";
+    String TAG = ">/>";
     ArrayList<String> arraylist_output2 = new ArrayList<>();
 
     @Override
@@ -21,8 +21,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         doTranslateEtoB obj1 = new doTranslateEtoB();
+
         arraylist_output2 = obj1.separateToIndividualArrays("Ben & I LOVES eating 3 ice-creams. Don't you, Tom? RIGHT?");
-        obj1.detectCapitalisation(arraylist_output2);
+        arraylist_output2 = obj1.detectCapitalisation(arraylist_output2);
+        Log.i(TAG, "onCreate: " + arraylist_output2);
+
+//   obj1.lettersToBinaryToDecimal();
 
 //        obj1.findMatch();
 
@@ -107,9 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
         // 2. Detect capitalisation of whole words or Capital letters only. Split to detect where passage capitalisation ends
         private ArrayList detectCapitalisation(ArrayList input_arraylist){
-
-            Log.i(TAG, "detectCapitalisation: "+ input_arraylist);
-
             boolean detect_capital_letter = false;
             boolean detect_capital_word = false;
 
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //detects for capital letters in front of a word
                 if (detect_capital_letter = Pattern.matches("\\b[A-Z]\\w[a-z]*\\b", ""+input_arraylist.get(i))){
-                        input_arraylist.add(i, 64);
+                        input_arraylist.add(i, "01");
                             i++;
                 }
             }
@@ -125,12 +126,17 @@ public class MainActivity extends AppCompatActivity {
             for (int j=0; j < input_arraylist.size(); j++){
                 // detects for capital words
                 if (detect_capital_letter = Pattern.matches("\\b[A-Z]{2,}\\b", ""+input_arraylist.get(j))){
-                    input_arraylist.add(j, 65);
-                    j++;
+
+                    ArrayList<String> temp_arraylist = new ArrayList<>();
+                    temp_arraylist.add("68");
+                    temp_arraylist.add("68");
+                    input_arraylist.addAll(j, temp_arraylist);
+                    j = j+ 2;
+                    Log.i(TAG, "detectCapitalisation: j is: " + j + " & the word is: " + input_arraylist.get(j));
                 }
             }
 
-            Log.i(TAG, "detectCapitalisation: ended:" + input_arraylist);
+            //Log.i(TAG, "detectCapitalisation: ended:" + input_arraylist);
             return input_arraylist;
         }
 
@@ -157,77 +163,99 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<String> obj = new ArrayList<>(Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"));
 
             for (int i = 0; i < obj.size(); i++) {
-                //String decimal_output = wordToDecimal(obj.get(i));
-                //int output2 = Integer.parseInt(decimal_output, 2);
+/*                String decimal_output = wordToDecimal(obj.get(i));
+
+                if (!decimal_output.contains(" ")){
+                    int output2 = Integer.parseInt(decimal_output, 2);
+                    Log.i(TAG, "lettersToBinaryToDecimal: " + obj.get(i) + " in decimal is: " + output2);
+                }
+                else {
+                    ArrayList<String> splitted_arraylist = new ArrayList<>(Arrays.asList(decimal_output.split(" ")));
+                    int output2 = 0;
+                    for (int j = 0; j < splitted_arraylist.size(); j++){
+                        output2 = Integer.parseInt(splitted_arraylist.get(j), 2);
+                    }
+                    Log.i(TAG, "lettersToBinaryToDecimal: " + output2);
+                }*/
+
+                int y = wordToDecimal(obj.get(i));
+                Log.i(TAG, "lettersToBinaryToDecimal: " + obj.get(i) + " is: " + y);
             }
         }
 
-        public String wordToDecimal(String x) {
+        public int wordToDecimal(String x) {
             switch (x) {
                 case "a":
                 case "1":
-                    return "100000";
+                    return Integer.parseInt("100000", 2);
                 case "b":
                 case "2":
-                    return "110000";
+                    return Integer.parseInt("110000", 2);
                 case "c":
                 case "3":
-                    return "100100";
+                    return Integer.parseInt("100100", 2);
                 case "d":
                 case "4":
-                    return "100110";
+                    return Integer.parseInt("100110", 2);
                 case "e":
                 case "5":
-                    return "100010";
+                    return Integer.parseInt("100010", 2);
                 case "f":
                 case "6":
-                    return "110100";
+                    return Integer.parseInt("110100", 2);
                 case "g":
                 case "7":
-                    return "110110";
+                    return Integer.parseInt("110110", 2);
                 case "h":
                 case "8":
-                    return "110010";
+                    return Integer.parseInt("110010", 2);
                 case "i":
                 case "9":
-                    return "010100";
+                    return Integer.parseInt("010100", 2);
                 case "j":
                 case "0":
-                    return "010110";
+                    return Integer.parseInt("010110", 2);
                 case "k":
-                    return "101000";
+                    return Integer.parseInt("101000", 2);
                 case "l":
-                    return "111000";
+                    return Integer.parseInt("111000", 2);
                 case "m":
-                    return "101100";
+                    return Integer.parseInt("101100", 2);
                 case "n":
-                    return "101110";
+                    return Integer.parseInt("101110", 2);
                 case "o":
-                    return "101010";
+                    return Integer.parseInt("101010", 2);
                 case "p":
-                    return "111100";
+                    return Integer.parseInt("111100", 2);
                 case "q":
-                    return "111110";
+                    return Integer.parseInt("111110", 2);
                 case "r":
-                    return "111010";
+                    return Integer.parseInt("111010", 2);
                 case "s":
-                    return "011100";
+                    return Integer.parseInt("011100", 2);
                 case "t":
-                    return "011110";
+                    return Integer.parseInt("011110", 2);
                 case "u":
-                    return "101001";
+                    return Integer.parseInt("101001", 2);
                 case "v":
-                    return "111001";
+                    return Integer.parseInt("111001", 2);
                 case "w":
-                    return "010111";
+                    return Integer.parseInt("010111", 2);
                 case "x":
-                    return "101101";
+                    return Integer.parseInt("101101", 2);
+
                 case "y":
-                    return "101111";
+                    return Integer.parseInt("101111", 2);
+
                 case "z":
-                    return "101011";
+                    return Integer.parseInt("100000", 2);
+
+//                case "capital_letter_indi":
+//                    return "000001";
+//                case "capital_word_indi":
+//                    return "000001 000001";
             }
-            return "";
+            return 0;
         }
     }
 }
