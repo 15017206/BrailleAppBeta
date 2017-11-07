@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         doTranslateEtoB obj1 = new doTranslateEtoB();
 
-        arraylist_output2 = obj1.separateToIndividualArrays("Ben & I LOVES eating 3 ice-creams. Don't you, Tom? RIGHT?");
+        arraylist_output2 = obj1.separateToIndividualArraysWord("Ben & I LOVES eating 3 ice-creams. Don't you, Tom? RIGHT?");
         arraylist_output2 = obj1.detectCapitalisation(arraylist_output2);
         Log.i(TAG, "onCreate: " + arraylist_output2);
 
@@ -31,14 +31,16 @@ public class MainActivity extends AppCompatActivity {
         arraylist_output3.add("e");
         arraylist_output3.add("n");
         arraylist_output2.addAll(1, arraylist_output3);
-        arraylist_output2.remove(4);
+        arraylist_output2.set(4, "0");
+
+
         Log.i(TAG, "onCreate: " + arraylist_output2);
     }
 
     class doTranslateEtoB {
 
         // 1. separate the strings to individual arrays
-        public ArrayList separateToIndividualArrays(String input_string) {
+        public ArrayList separateToIndividualArraysWord(String input_string) {
 
             // 1a. Using a .split(" ")-> ["THIS" "IS" "A" "PASSAGE." "I" "LOVE" "eating" "3" "ice-creams." "Don't" "you," "Tom?"]
             ArrayList<String> arraylist_output = new ArrayList<String>(Arrays.asList(input_string.split(" ")));
@@ -139,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
             //Log.i(TAG, "detectCapitalisation: ended:" + input_arraylist);
             return input_arraylist;
         }
+
+        private  ArrayList separateToIndividualArraysLetter()
 
         @NonNull
         private String findMatch() {
