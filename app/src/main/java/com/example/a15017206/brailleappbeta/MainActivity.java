@@ -26,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
         arraylist_output2 = obj1.detectCapitalisation(arraylist_output2);
         Log.i(TAG, "onCreate: " + arraylist_output2);
 
-//   obj1.lettersToBinaryToDecimal();
-
-//        obj1.findMatch();
-
-        //Sample test to split words with hyphens ie. ice-cream:
-        //System.out.println(Arrays.toString("a-b-c-d-".split("((?<=-)|(?=-))")));
-        //System.out.println(Arrays.toString("Hello!".split("((?<=!)|(?=!))")));
+        ArrayList<String> arraylist_output3 = new ArrayList<>();
+        arraylist_output3.add("B");
+        arraylist_output3.add("e");
+        arraylist_output3.add("n");
+        arraylist_output2.addAll(1, arraylist_output3);
+        arraylist_output2.remove(4);
+        Log.i(TAG, "onCreate: " + arraylist_output2);
     }
 
     class doTranslateEtoB {
@@ -103,35 +103,35 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-             System.out.println(arraylist_output);
+            System.out.println(arraylist_output);
 
             return arraylist_output;
             // return Integer.parseInt(c, 2);
         }
 
         // 2. Detect capitalisation of whole words or Capital letters only. Split to detect where passage capitalisation ends
-        private ArrayList detectCapitalisation(ArrayList input_arraylist){
+        private ArrayList detectCapitalisation(ArrayList input_arraylist) {
             boolean detect_capital_letter = false;
             boolean detect_capital_word = false;
 
-            for (int i = 0; i<input_arraylist.size(); i++){
+            for (int i = 0; i < input_arraylist.size(); i++) {
 
                 //detects for capital letters in front of a word
-                if (detect_capital_letter = Pattern.matches("\\b[A-Z]\\w[a-z]*\\b", ""+input_arraylist.get(i))){
-                        input_arraylist.add(i, "01");
-                            i++;
+                if (detect_capital_letter = Pattern.matches("\\b[A-Z]\\w[a-z]*\\b", "" + input_arraylist.get(i))) {
+                    input_arraylist.add(i, "1");
+                    i++;
                 }
             }
 
-            for (int j=0; j < input_arraylist.size(); j++){
+            for (int j = 0; j < input_arraylist.size(); j++) {
                 // detects for capital words
-                if (detect_capital_letter = Pattern.matches("\\b[A-Z]{2,}\\b", ""+input_arraylist.get(j))){
+                if (detect_capital_letter = Pattern.matches("\\b[A-Z]{2,}\\b", "" + input_arraylist.get(j))) {
 
                     ArrayList<String> temp_arraylist = new ArrayList<>();
-                    temp_arraylist.add("68");
-                    temp_arraylist.add("68");
+                    temp_arraylist.add("1");
+                    temp_arraylist.add("1");
                     input_arraylist.addAll(j, temp_arraylist);
-                    j = j+ 2;
+                    j = j + 2;
                     Log.i(TAG, "detectCapitalisation: j is: " + j + " & the word is: " + input_arraylist.get(j));
                 }
             }
@@ -160,24 +160,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Grade 1
         public void lettersToBinaryToDecimal() {
-            ArrayList<String> obj = new ArrayList<>(Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"));
+            ArrayList<String> obj = new ArrayList<>(Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "CAPS", "caps"));
 
             for (int i = 0; i < obj.size(); i++) {
-/*                String decimal_output = wordToDecimal(obj.get(i));
-
-                if (!decimal_output.contains(" ")){
-                    int output2 = Integer.parseInt(decimal_output, 2);
-                    Log.i(TAG, "lettersToBinaryToDecimal: " + obj.get(i) + " in decimal is: " + output2);
-                }
-                else {
-                    ArrayList<String> splitted_arraylist = new ArrayList<>(Arrays.asList(decimal_output.split(" ")));
-                    int output2 = 0;
-                    for (int j = 0; j < splitted_arraylist.size(); j++){
-                        output2 = Integer.parseInt(splitted_arraylist.get(j), 2);
-                    }
-                    Log.i(TAG, "lettersToBinaryToDecimal: " + output2);
-                }*/
-
                 int y = wordToDecimal(obj.get(i));
                 Log.i(TAG, "lettersToBinaryToDecimal: " + obj.get(i) + " is: " + y);
             }
@@ -250,10 +235,10 @@ public class MainActivity extends AppCompatActivity {
                 case "z":
                     return Integer.parseInt("100000", 2);
 
-//                case "capital_letter_indi":
-//                    return "000001";
-//                case "capital_word_indi":
-//                    return "000001 000001";
+                case "CAPS":
+                    return Integer.parseInt("000001", 2);
+                case "caps":
+                    return Integer.parseInt("100000", 2);
             }
             return 0;
         }
