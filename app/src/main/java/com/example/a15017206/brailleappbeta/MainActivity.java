@@ -25,21 +25,13 @@ public class MainActivity extends AppCompatActivity {
         arraylist_output2 = obj1.separateToIndividualArraysWord("Hi, 3 ice-creams PLEASE. OK? GOOD. same To YOU.");
         arraylist_output2 = obj1.detectCapitalisation(arraylist_output2);
         arraylist_output2 = obj1.separateToIndividualArraysLetter(arraylist_output2);
-         Log.i(TAG, "onCreate: " + arraylist_output2);
-//
-//        ArrayList<String> arraylist_output3 = new ArrayList<>();
-//        arraylist_output3.add("B");
-//        arraylist_output3.add("e");
-//        arraylist_output3.add("n");
-//        arraylist_output2.addAll(1, arraylist_output3);
-//        arraylist_output2.set(4, "0");
-//
-//        Log.i(TAG, "onCreate: " + arraylist_output2);
+
+        Log.i(TAG, "onCreate: " + arraylist_output2);
     }
 
     class doTranslateEtoB {
 
-        // 1. separate the strings to individual arrays
+        // 1. separate the strings to individual words
         public ArrayList separateToIndividualArraysWord(String input_string) {
 
             // 1a. Using a .split(" ")-> ["THIS" "IS" "A" "PASSAGE." "I" "LOVE" "eating" "3" "ice-creams." "Don't" "you," "Tom?"]
@@ -155,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList<String> temporary_arraylist = new ArrayList<String>(Arrays.asList(x.split("")));
                     temporary_arraylist.remove(0);
                     input_arraylist2.addAll(i, temporary_arraylist);
-                    input_arraylist2.remove(i+temporary_arraylist.size());
+                    input_arraylist2.remove(i + temporary_arraylist.size());
                     // i = i + temporary_arraylist.size();
                 }
 
@@ -163,22 +155,10 @@ public class MainActivity extends AppCompatActivity {
             return input_arraylist2;
         }
 
-        @NonNull
-        private String findMatch() {
-            String match = "1234567890";
+        private ArrayList convertLettersToDecimals(ArrayList input_arraylist3) {
 
-            // Pattern to find code
-            String pattern = "[0-9]{8}";  // Sequence of 8 digits
-            Pattern regEx = Pattern.compile(pattern);
 
-            // Find instance of pattern matches
-            Matcher m = regEx.matcher(match);
-            if (m.find()) {
-                //match = m.group(0);
-                System.out.println("matched. >>" + m.group(0));
-            }
-            //return match;
-            return "";
+            return input_arraylist3;
         }
 
         //Grade 1
@@ -264,6 +244,24 @@ public class MainActivity extends AppCompatActivity {
                     return Integer.parseInt("100000", 2);
             }
             return 0;
+        }
+
+        @NonNull
+        private String findMatch() {
+            String match = "1234567890";
+
+            // Pattern to find code
+            String pattern = "[0-9]{8}";  // Sequence of 8 digits
+            Pattern regEx = Pattern.compile(pattern);
+
+            // Find instance of pattern matches
+            Matcher m = regEx.matcher(match);
+            if (m.find()) {
+                //match = m.group(0);
+                System.out.println("matched. >>" + m.group(0));
+            }
+            //return match;
+            return "";
         }
     }
 }
