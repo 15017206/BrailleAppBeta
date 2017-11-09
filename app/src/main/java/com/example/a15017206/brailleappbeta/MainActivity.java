@@ -22,19 +22,19 @@ public class MainActivity extends AppCompatActivity {
 
         doTranslateEtoB obj1 = new doTranslateEtoB();
 
-        arraylist_output2 = obj1.separateToIndividualArraysWord("Ben & I LOVES eating 3 ice-creams. Don't you, Tom? RIGHT?");
+        arraylist_output2 = obj1.separateToIndividualArraysWord("Hi, 3 ice-creams PLEASE. OK? GOOD. same To YOU.");
         arraylist_output2 = obj1.detectCapitalisation(arraylist_output2);
-        Log.i(TAG, "onCreate: " + arraylist_output2);
-
-        ArrayList<String> arraylist_output3 = new ArrayList<>();
-        arraylist_output3.add("B");
-        arraylist_output3.add("e");
-        arraylist_output3.add("n");
-        arraylist_output2.addAll(1, arraylist_output3);
-        arraylist_output2.set(4, "0");
-
-
-        Log.i(TAG, "onCreate: " + arraylist_output2);
+        arraylist_output2 = obj1.separateToIndividualArraysLetter(arraylist_output2);
+         Log.i(TAG, "onCreate: " + arraylist_output2);
+//
+//        ArrayList<String> arraylist_output3 = new ArrayList<>();
+//        arraylist_output3.add("B");
+//        arraylist_output3.add("e");
+//        arraylist_output3.add("n");
+//        arraylist_output2.addAll(1, arraylist_output3);
+//        arraylist_output2.set(4, "0");
+//
+//        Log.i(TAG, "onCreate: " + arraylist_output2);
     }
 
     class doTranslateEtoB {
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < input_arraylist.size(); i++) {
 
                 //detects for capital letters in front of a word
-                if (detect_capital_letter = Pattern.matches("\\b[A-Z]\\w[a-z]*\\b", "" + input_arraylist.get(i))) {
+                if (detect_capital_letter = Pattern.matches("\\b[A-Z]{1}[a-z]{1,}\\b", "" + input_arraylist.get(i))) {
                     input_arraylist.add(i, "1");
                     i++;
                 }
@@ -142,7 +142,26 @@ public class MainActivity extends AppCompatActivity {
             return input_arraylist;
         }
 
-        private  ArrayList separateToIndividualArraysLetter()
+        private ArrayList separateToIndividualArraysLetter(ArrayList input_arraylist2) {
+
+            Log.i(TAG, "separateToIndividualArraysLetter: " + input_arraylist2);
+            for (int i = 0; i < input_arraylist2.size(); i++) {
+
+                // check if the index contains a legit word
+                if (Pattern.matches("\\b[A-Z | a-z]{2,}\\b", "" + input_arraylist2.get(i))) {
+
+                    // This is assumed to be in grade 1 Braille
+                    String x = "" + input_arraylist2.get(i);
+                    ArrayList<String> temporary_arraylist = new ArrayList<String>(Arrays.asList(x.split("")));
+                    temporary_arraylist.remove(0);
+                    input_arraylist2.addAll(i, temporary_arraylist);
+                    input_arraylist2.remove(i+temporary_arraylist.size());
+                    // i = i + temporary_arraylist.size();
+                }
+
+            }
+            return input_arraylist2;
+        }
 
         @NonNull
         private String findMatch() {
