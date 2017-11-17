@@ -3,48 +3,38 @@ package com.example.a15017206.brailleappbeta;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
-import java.util.regex.Pattern;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity {
+public class TestActivity extends AppCompatActivity {
 
     String TAG = ">/>";
     ArrayList<String> arraylist_output2 = new ArrayList<>();
-    ArrayList<String> arraylist_output3 = new ArrayList<>();
-    ArrayList<String> arraylist_output4 = new ArrayList<>();
-    ArrayList<String> arraylist_output5 = new ArrayList<>();
-
-    TextView textView4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        textView4 = (TextView) findViewById(R.id.textView4);
+        setContentView(R.layout.activity_test);
 
         doTranslateEtoB obj1 = new doTranslateEtoB();
 
-        arraylist_output2 = obj1.separateToIndividualArraysWord("32 fish");
-
-        // testing purposes only
-//        String x = obj1.lettersToBinaryToDecimal();
-//textView4.setText(x);
+        arraylist_output2 = obj1.separateToIndividualArraysWord("3 i 3 HI");
 
         arraylist_output2 = obj1.detectNumbers(arraylist_output2);
         arraylist_output2 = obj1.detectCapitalisation(arraylist_output2);
         arraylist_output2 = obj1.separateToIndividualArraysLetter(arraylist_output2);
+        Log.i(TAG, "Indiv letters/numbers: " + arraylist_output2);
         arraylist_output2 = obj1.convertLettersAndNumbersToBinary(arraylist_output2);
-//arraylist_output2 = obj1.binaryToDecimal(arraylist_output2);
+        Log.i(TAG, "In binary form is: " + arraylist_output2);
+        arraylist_output2 = obj1.convertBinaryToDecimals(arraylist_output2);
 
-        Log.i(TAG, "onCreate: " + arraylist_output2);
+        Log.i(TAG, "In decimal form is: " + arraylist_output2);
     }
 
     class doTranslateEtoB {
 
-        // 1. separate the strings to individual words
         public ArrayList separateToIndividualArraysWord(String input_string) {
 
             // 1a. Using a .split(" ")-> ["THIS" "IS" "A" "PASSAGE." "I" "LOVE" "eating" "3" "ice-creams." "Don't" "you," "Tom?"]
@@ -101,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
             // return Integer.parseInt(c, 2);
         }
 
-        // 1.b? BETA: detect numbers - method is hardcoded for grade 1
         public ArrayList detectNumbers(ArrayList input_arraylist) {
             for (int i = 0; i < input_arraylist.size(); i++) {
                 String x = input_arraylist.get(i) + "";
@@ -116,16 +105,16 @@ public class MainActivity extends AppCompatActivity {
                     input_arraylist.add(i, "001111");
                     i = i + temp_arraylist.size();
 
-                    if (true){
-                        input_arraylist.add("xxx");
+                    String z = input_arraylist.get(i+1)+"";
+                    if (z.matches("\\b[A-Za-z]+\\b")){
+                        input_arraylist.add(i+1, "000011");
+                        i = i + temp_arraylist.size();
                     }
                 }
             }
             return input_arraylist;
         }
 
-
-        // 2. Detect capitalisation of whole words or Capital letters only. Split to detect where passage capitalisation ends
         private ArrayList detectCapitalisation(ArrayList input_arraylist) {
             boolean detect_capital_letter = false;
             boolean detect_capital_word = false;
@@ -156,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
             return input_arraylist;
         }
 
-        //This is used for Uncontracted Braille
         private ArrayList separateToIndividualArraysLetter(ArrayList input_arraylist2) {
 
             // Log.i(TAG, "separateToIndividualArraysLetter: " + input_arraylist2);
@@ -178,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
             return input_arraylist2;
         }
 
-        // Grade 1:
         private ArrayList convertLettersAndNumbersToBinary(ArrayList input_arraylist3) {
             ArrayList<String> temp_arraylist = new ArrayList<>();
             for (int i = 0; i < input_arraylist3.size(); i++) {
@@ -189,10 +176,20 @@ public class MainActivity extends AppCompatActivity {
                     temp_arraylist.add(x);
                 }
             }
-            Log.i(TAG, "convertLettersToDecimals: " + temp_arraylist);
             return temp_arraylist;
         }
 
+        public ArrayList convertBinaryToDecimals(ArrayList input_arraylist4){
+            ArrayList<String> temp_arraylist = new ArrayList<>();
+            for (int i = 0; i< input_arraylist4.size(); i++){
+                String x = input_arraylist4.get(i) + "";
+
+                if (x.matches("\\b[0|1]{6}\\b")) {
+                    temp_arraylist.add("" + binaryToDecimal(x));
+                }
+            }
+            return temp_arraylist;
+        }
 
         public String wordToBinary(String x) {
             switch (x.toLowerCase()) {
@@ -301,24 +298,66 @@ public class MainActivity extends AppCompatActivity {
             switch (y) {
                 case "100000": // a/1
                     return Integer.parseInt("100000", 2); //32;
+                case "110000": // b/2
+                    return Integer.parseInt("110000", 2); //32;
+                case "100100": // c/3
+                    return Integer.parseInt("100100", 2); //32;
+                case "100110": // d/4
+                    return Integer.parseInt("100110", 2); //32;
+                case "100010": // e/5
+                    return Integer.parseInt("100010", 2); //32;
+                case "110100": // f/6
+                    return Integer.parseInt("110100", 2); //32;
+                case "110110": // g/7
+                    return Integer.parseInt("110110", 2); //32;
+                case "110010": // h/8
+                    return Integer.parseInt("110010", 2); //32;
+                case "010100": // i/9
+                    return Integer.parseInt("010100", 2); //32;
+                case "010110": // j/0
+                    return Integer.parseInt("010110", 2); //32;
+
+                case "101000": // k/1
+                    return Integer.parseInt("101000", 2); //32;
+                case "111000": // l/1
+                    return Integer.parseInt("111000", 2); //32;
+                case "101100": // m/1
+                    return Integer.parseInt("101100", 2); //32;
+                case "101110": // n/1
+                    return Integer.parseInt("101110", 2); //32;
+                case "101010": // o/1
+                    return Integer.parseInt("101010", 2); //32;
+                case "111100": // p/1
+                    return Integer.parseInt("111100", 2); //32;
+                case "111110": // q/1
+                    return Integer.parseInt("111110", 2); //32;
+                case "111010": // r/1
+                    return Integer.parseInt("111010", 2); //32;
+                case "011100": // s/1
+                    return Integer.parseInt("011100", 2); //32;
+                case "011110": // t/1
+                    return Integer.parseInt("011110", 2); //32;
+                case "101001": // u/1
+                    return Integer.parseInt("101001", 2); //32;
+                case "111001": // v/1
+                    return Integer.parseInt("111001", 2); //32;
+                case "010111": // w/1
+                    return Integer.parseInt("010111", 2); //32;
+                case "101101": // x/1
+                    return Integer.parseInt("101101", 2); //32;
+                case "101111": // y/1
+                    return Integer.parseInt("101111", 2); //32;
+                case "101011": // z/1
+                    return Integer.parseInt("101011", 2); //32;
+                case "001111": // entering numeric mode
+                    return Integer.parseInt("001111", 2); //32;
+                case "000011": // entering grade 1 mode
+                    return Integer.parseInt("101011", 2); //32;
+                case "000001": // entering uppercase mode
+                    return Integer.parseInt("000001", 2); //32;
+
             }
             return 0;
         }
-
-        //Grade 1 - testing purposes only
-        public String lettersToBinaryToDecimal() {
-            ArrayList<String> obj = new ArrayList<>(Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "Caps", ",", "numeric_indic"));
-
-            String x = "";
-
-            for (int i = 0; i < obj.size(); i++) {
-                int y = Integer.parseInt(wordToBinary(obj.get(i)));
-                Log.i(TAG, "lettersToBinaryToDecimal: " + obj.get(i) + " in decimal form is: " + y);
-                x = x + obj.get(i) + " in decimal form is: " + y + "\n";
-            }
-
-            return x;
-        }
     }
 }
-
