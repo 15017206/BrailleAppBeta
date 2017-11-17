@@ -15,6 +15,28 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="This is a test App" />
+
+        <EditText
+            android:id="@+id/etInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Write something..."
+            android:inputType="textMultiLine" />
+
+        <Button
+            android:id="@+id/btnDoTranslate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Do Translate!" />
+
+        <TextView
+            android:id="@+id/tvOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="TextView" />
+
     </LinearLayout>
+
 </ScrollView>

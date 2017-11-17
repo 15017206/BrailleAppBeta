@@ -3,6 +3,10 @@ package com.example.a15017206.brailleappbeta;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,25 +16,44 @@ public class TestActivity extends AppCompatActivity {
 
     String TAG = ">/>";
     ArrayList<String> arraylist_output2 = new ArrayList<>();
+    TextView tvOutput;
+    EditText etInput;
+    Button btnDoTranslate;
+    String output = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        doTranslateEtoB obj1 = new doTranslateEtoB();
+        tvOutput = (TextView) findViewById(R.id.tvOutput);
+        etInput = (EditText) findViewById(R.id.etInput);
+        btnDoTranslate = (Button) findViewById(R.id.btnDoTranslate);
 
-        arraylist_output2 = obj1.separateToIndividualArraysWord("3 i 3 HI");
+        final doTranslateEtoB obj1 = new doTranslateEtoB();
+
+        etInput.setText("555 here");
+
+        output = "";
+        arraylist_output2 = obj1.separateToIndividualArraysWord(etInput.getText().toString());
 
         arraylist_output2 = obj1.detectNumbers(arraylist_output2);
         arraylist_output2 = obj1.detectCapitalisation(arraylist_output2);
         arraylist_output2 = obj1.separateToIndividualArraysLetter(arraylist_output2);
         Log.i(TAG, "Indiv letters/numbers: " + arraylist_output2);
+        output += arraylist_output2 + "\n";
+
         arraylist_output2 = obj1.convertLettersAndNumbersToBinary(arraylist_output2);
         Log.i(TAG, "In binary form is: " + arraylist_output2);
-        arraylist_output2 = obj1.convertBinaryToDecimals(arraylist_output2);
+        output += arraylist_output2 + "\n";
 
+        arraylist_output2 = obj1.convertBinaryToDecimals(arraylist_output2);
         Log.i(TAG, "In decimal form is: " + arraylist_output2);
+        output += arraylist_output2 + "\n";
+
+        tvOutput.setText(output);
+
+
     }
 
     class doTranslateEtoB {
@@ -105,10 +128,14 @@ public class TestActivity extends AppCompatActivity {
                     input_arraylist.add(i, "001111");
                     i = i + temp_arraylist.size();
 
-                    String z = input_arraylist.get(i+1)+"";
-                    if (z.matches("\\b[A-Za-z]+\\b")){
-                        input_arraylist.add(i+1, "000011");
-                        i = i + temp_arraylist.size();
+                    //checking if there is a grade 1 letter behind a number
+                    if (input_arraylist.get(i+1) == true){
+                        //To add a grade 1 indicator if there is letters behind numbers
+                        String z = input_arraylist.get(i + 1) + "";
+                        if (z.matches("\\b[A-Za-z]+\\b")) {
+                            input_arraylist.add(i + 1, "000011");
+                            i = i + temp_arraylist.size();
+                        }
                     }
                 }
             }
@@ -170,7 +197,7 @@ public class TestActivity extends AppCompatActivity {
             ArrayList<String> temp_arraylist = new ArrayList<>();
             for (int i = 0; i < input_arraylist3.size(); i++) {
                 String x = input_arraylist3.get(i) + "";
-                if (x.matches("\\b[A-Za-z0-9]\\b|\\bnumeric_indic\\b|\\bcaps\\b")) {
+                if (x.matches("\\b[A-Za-z0-9]\\b|,")) {
                     temp_arraylist.add("" + wordToBinary(x));
                 } else {
                     temp_arraylist.add(x);
@@ -179,9 +206,9 @@ public class TestActivity extends AppCompatActivity {
             return temp_arraylist;
         }
 
-        public ArrayList convertBinaryToDecimals(ArrayList input_arraylist4){
+        public ArrayList convertBinaryToDecimals(ArrayList input_arraylist4) {
             ArrayList<String> temp_arraylist = new ArrayList<>();
-            for (int i = 0; i< input_arraylist4.size(); i++){
+            for (int i = 0; i < input_arraylist4.size(); i++) {
                 String x = input_arraylist4.get(i) + "";
 
                 if (x.matches("\\b[0|1]{6}\\b")) {
@@ -191,6 +218,8 @@ public class TestActivity extends AppCompatActivity {
             return temp_arraylist;
         }
 
+
+        //These 2 are libraries created by me
         public String wordToBinary(String x) {
             switch (x.toLowerCase()) {
                 case "a":
@@ -355,6 +384,8 @@ public class TestActivity extends AppCompatActivity {
                     return Integer.parseInt("101011", 2); //32;
                 case "000001": // entering uppercase mode
                     return Integer.parseInt("000001", 2); //32;
+                case "010000": // translate , to decimals
+                    return Integer.parseInt("010000", 2); //32;
 
             }
             return 0;
