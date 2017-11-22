@@ -3,7 +3,6 @@ package com.example.a15017206.brailleappbeta;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
-public class TestActivity extends AppCompatActivity {
+public class Test2Activity extends AppCompatActivity {
 
     String TAG = ">/>";
     ArrayList<String> arraylist_output2 = new ArrayList<>();
@@ -24,18 +23,12 @@ public class TestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_test2);
 
-        tvOutput = (TextView) findViewById(R.id.tvOutput);
-        etInput = (EditText) findViewById(R.id.etInput);
-        btnDoTranslate = (Button) findViewById(R.id.btnDoTranslate);
-
-        final doTranslateEtoB obj1 = new doTranslateEtoB();
-
-        etInput.setText("i");
+        final Test2Activity.doTranslateEtoB obj1 = new Test2Activity.doTranslateEtoB();
 
         output = "";
-        arraylist_output2 = obj1.separateToIndividualArraysWord(etInput.getText().toString());
+        arraylist_output2 = obj1.separateToIndividualArraysWord("");
         output += arraylist_output2 + "\n";
         arraylist_output2 = obj1.detectNumbers(arraylist_output2);
         output += arraylist_output2 + "\n";
@@ -47,32 +40,8 @@ public class TestActivity extends AppCompatActivity {
         output += arraylist_output2 + "\n";
         arraylist_output2 = obj1.convertBinaryToDecimals(arraylist_output2);
         output += arraylist_output2 + "\n";
-        tvOutput.setText(output);
-
-
-        btnDoTranslate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                output = "";
-//                arraylist_output2 = obj1.separateToIndividualArraysWord(etInput.getText().toString());
-//
-//                arraylist_output2 = obj1.detectNumbers(arraylist_output2);
-//                arraylist_output2 = obj1.detectCapitalisation(arraylist_output2);
-//                arraylist_output2 = obj1.separateToIndividualArraysLetter(arraylist_output2);
-//                Log.i(TAG, "Indiv letters/numbers: " + arraylist_output2);
-//                output += arraylist_output2 + "\n";
-//
-//                arraylist_output2 = obj1.convertLettersAndNumbersToBinary(arraylist_output2);
-//                Log.i(TAG, "In binary form is: " + arraylist_output2);
-//                output += arraylist_output2 + "\n";
-//
-//                arraylist_output2 = obj1.convertBinaryToDecimals(arraylist_output2);
-//                Log.i(TAG, "In decimal form is: " + arraylist_output2);
-//                output += arraylist_output2 + "\n";
-//
-//                tvOutput.setText(output);
-            }
-        });
+        //tvOutput.setText(output);
+        Log.i(TAG, "onCreate: " + output);
     }
 
     class doTranslateEtoB {
@@ -81,10 +50,6 @@ public class TestActivity extends AppCompatActivity {
 
             // 1a. Using a .split(" ")-> ["THIS" "IS" "A" "PASSAGE." "I" "LOVE" "eating" "3" "ice-creams." "Don't" "you," "Tom?"]
             ArrayList<String> arraylist_output = new ArrayList<String>(Arrays.asList(input_string.split(" ")));
-
-            for (int i = 0; i < arraylist_output.size(); i++){
-                arraylist_output.add(" ");
-            }
 
             // for "-"
             for (int i = 0; i < arraylist_output.size(); i++) {
