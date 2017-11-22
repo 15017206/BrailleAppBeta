@@ -32,7 +32,7 @@ public class TestActivity extends AppCompatActivity {
 
         final doTranslateEtoB obj1 = new doTranslateEtoB();
 
-        etInput.setText("555 here");
+        etInput.setText("1 p 7 uu");
 
         output = "";
         arraylist_output2 = obj1.separateToIndividualArraysWord(etInput.getText().toString());
@@ -53,7 +53,11 @@ public class TestActivity extends AppCompatActivity {
 
         tvOutput.setText(output);
 
-
+        btnDoTranslate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
     }
 
     class doTranslateEtoB {
@@ -125,16 +129,15 @@ public class TestActivity extends AppCompatActivity {
                     input_arraylist.remove(i);
 
                     input_arraylist.addAll(i, temp_arraylist);
-                    input_arraylist.add(i, "001111");
+                    input_arraylist.add(i, "001111"); //this is numeric indicator
                     i = i + temp_arraylist.size();
 
-                    //checking if there is a grade 1 letter behind a number
-                    if (input_arraylist.get(i+1) == true){
-                        //To add a grade 1 indicator if there is letters behind numbers
-                        String z = input_arraylist.get(i + 1) + "";
-                        if (z.matches("\\b[A-Za-z]+\\b")) {
-                            input_arraylist.add(i + 1, "000011");
-                            i = i + temp_arraylist.size();
+                    if (i < input_arraylist.size() ){ // To ensure that a digit(0-9) is the last index
+                        if ((input_arraylist.get(i+1)+"").matches("\\b[A-Za-z]+\\b")){
+                            //To add a grade 1 indicator if there is letters behind numbers
+                            String z = input_arraylist.get(i+1) + "";
+                            input_arraylist.add(i+1, "000011");
+                            i++;
                         }
                     }
                 }
