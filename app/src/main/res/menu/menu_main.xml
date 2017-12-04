@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_b_to_e"
+        android:title="Braille To English" />
+    <item
+        android:id="@+id/menu_e_to_b"
+        android:title="English To Braille" />
+</menu>
