@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Pattern;
@@ -60,7 +61,6 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
         });
 //        btnDoTranslate.performClick();
     }
-
 
 
     class doTranslateEtoB {
@@ -166,14 +166,14 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
             }
 
             // This is needed to split v1.2 to v1, 2, --> v,1,2 debug if necessary
-            for (int i = 0; i < arraylist_output.size(); i++){
-                if (Pattern.matches("(\\d[A-Za-z])|([A-Za-z]\\d)", arraylist_output.get(i) + "")){
-                    ArrayList<String> temporary_arraylist = new ArrayList<String>(Arrays.asList((arraylist_output.get(i)+"").split("")));
+            for (int i = 0; i < arraylist_output.size(); i++) {
+                if (Pattern.matches("(\\d[A-Za-z])|([A-Za-z]\\d)", arraylist_output.get(i) + "")) {
+                    ArrayList<String> temporary_arraylist = new ArrayList<String>(Arrays.asList((arraylist_output.get(i) + "").split("")));
                     arraylist_output.remove(i);
                     temporary_arraylist.remove(0);
 
                     arraylist_output.addAll(i, temporary_arraylist);
-                    i+= temporary_arraylist.size();
+                    i += temporary_arraylist.size();
                 }
             }
 
@@ -205,7 +205,7 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
                 // is i NOT the last index? Need to know, as we need to add a grade 1 indicator if a word is behind a numeral
                 if (i < input_arraylist.size()) {
                     Log.i(TAG, "detectNumbers: ");
-                    if (Pattern.matches("\\b[A-Ja-j]+[A-Za-z]*\\b", input_arraylist.get(i) + "") && i > 0 && numericMode == true){
+                    if (Pattern.matches("\\b[A-Ja-j]+[A-Za-z]*\\b", input_arraylist.get(i) + "") && i > 0 && numericMode == true) {
                         input_arraylist.add(i, "000011");
                         i++;
                         numericMode = false;
@@ -268,17 +268,12 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
 
                 //STEP 3: when words like, iPhone, macPherson, when a uppercase letter in a lowercase word
                 // detects uppercase, and just add. At this point, legit words/letters should be capitalised already
-                if (input_arraylist2.size() >= 2 && i < input_arraylist2.size()-1) {
-                    if (Pattern.matches("\\b[a-z]+\\b", "" + input_arraylist2.get(i)) && Pattern.matches("\\b[A-Z]+\\b", "" + input_arraylist2.get(i + 1))){
-                        input_arraylist2.add(i+1, "000001");
-                    }
-                }
+//                if (input_arraylist2.size() >= 2 && i < input_arraylist2.size()-1) {
+//                    if (Pattern.matches("\\b[a-z]+\\b", "" + input_arraylist2.get(i)) && Pattern.matches("\\b[A-Z]+\\b", "" + input_arraylist2.get(i + 1))){
+//                        input_arraylist2.add(i+1, "000001");
+//                    }
+//                }
 
-                if (input_arraylist2.size() >= 2 && i < input_arraylist2.size()-1) {
-                    if (Pattern.matches("\\b[A-Z]+\\b", "" + input_arraylist2.get(i))){
-                        input_arraylist2.add(i+1, "000001");
-                    }
-                }
 
 //                String y = "" + input_arraylist2.get(i);
 //                ArrayList<String> temporary_arraylist2 = new ArrayList<String>(Arrays.asList(y.split("")));
@@ -295,8 +290,23 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
 //                    i+= temporary_arraylist2.size();
 //
 //                }
+            }
+
+            // At this point, all words should be decomposed to letters already
+            //This is to test for unusual words with mixed uppercasing - like, iPhone, iOS,
+            // 1. If the arraylist is at least size 2 & i is less than (2-1)
+            for (int i = 0; i < input_arraylist2.size(); i++) {
+                if (input_arraylist2.size() > 1 && i < input_arraylist2.size()-1 ){
+                    // If the index 0 is either lowercase/uppercase & index 1 is uppercase
+                    if (Pattern.matches("\\b[a-z]\\b", "" + input_arraylist2.get(i)) && Pattern.matches("\\b[A-Z]\\b", "" + input_arraylist2.get(i+1))) {
+                        // Add the "000001" to index 0
+                        input_arraylist2.add(i + 1, "000001");
+                    }
+                }
+
 
             }
+
             return input_arraylist2;
         }
 
@@ -527,105 +537,105 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
             ArrayList<String> arraylist_output2 = new ArrayList<>();
             switch (y) {
                 case "000000":
-                     arraylist_output2.add(""+Integer.parseInt("000000", 2));
+                    arraylist_output2.add("" + Integer.parseInt("000000", 2));
                     return arraylist_output2;
                 case "100000": // a/1
-                    arraylist_output2.add(""+Integer.parseInt("100000", 2));
+                    arraylist_output2.add("" + Integer.parseInt("100000", 2));
                     return arraylist_output2;
                 case "110000": // b/2
-                    arraylist_output2.add(""+Integer.parseInt("110000", 2));
+                    arraylist_output2.add("" + Integer.parseInt("110000", 2));
                     return arraylist_output2;
                 case "100100": // c/3
-                    arraylist_output2.add(""+Integer.parseInt("100100", 2));
+                    arraylist_output2.add("" + Integer.parseInt("100100", 2));
                     return arraylist_output2;
                 case "100110": // d/4
-                    arraylist_output2.add(""+Integer.parseInt("100110", 2));
+                    arraylist_output2.add("" + Integer.parseInt("100110", 2));
                     return arraylist_output2;
                 case "100010": // e/5
-                    arraylist_output2.add(""+Integer.parseInt("100010", 2));
+                    arraylist_output2.add("" + Integer.parseInt("100010", 2));
                     return arraylist_output2;
                 case "110100": // f/6
-                    arraylist_output2.add(""+Integer.parseInt("110100", 2));
+                    arraylist_output2.add("" + Integer.parseInt("110100", 2));
                     return arraylist_output2;
                 case "110110": // g/7
-                    arraylist_output2.add(""+Integer.parseInt("110110", 2));
+                    arraylist_output2.add("" + Integer.parseInt("110110", 2));
                     return arraylist_output2;
                 case "110010": // h/8
-                    arraylist_output2.add(""+Integer.parseInt("110010", 2));
+                    arraylist_output2.add("" + Integer.parseInt("110010", 2));
                     return arraylist_output2;
                 case "010100": // i/9
-                    arraylist_output2.add(""+Integer.parseInt("010100", 2));
+                    arraylist_output2.add("" + Integer.parseInt("010100", 2));
                     return arraylist_output2;
                 case "010110": // j/0
-                    arraylist_output2.add(""+Integer.parseInt("010110", 2));
+                    arraylist_output2.add("" + Integer.parseInt("010110", 2));
                     return arraylist_output2;
 
                 case "101000": // k/1
-                    arraylist_output2.add(""+Integer.parseInt("101000", 2));
+                    arraylist_output2.add("" + Integer.parseInt("101000", 2));
                     return arraylist_output2;
                 case "111000": // l/1
-                    arraylist_output2.add(""+Integer.parseInt("111000", 2));
+                    arraylist_output2.add("" + Integer.parseInt("111000", 2));
                     return arraylist_output2;
                 case "101100": // m/1
-                    arraylist_output2.add(""+Integer.parseInt("101100", 2));
+                    arraylist_output2.add("" + Integer.parseInt("101100", 2));
                     return arraylist_output2;
                 case "101110": // n/1
-                    arraylist_output2.add(""+Integer.parseInt("101110", 2));
+                    arraylist_output2.add("" + Integer.parseInt("101110", 2));
                     return arraylist_output2;
                 case "101010": // o/1
-                    arraylist_output2.add(""+Integer.parseInt("101010", 2));
+                    arraylist_output2.add("" + Integer.parseInt("101010", 2));
                     return arraylist_output2;
                 case "111100": // p/1
-                    arraylist_output2.add(""+Integer.parseInt("111100", 2));
+                    arraylist_output2.add("" + Integer.parseInt("111100", 2));
                     return arraylist_output2;
                 case "111110": // q/1
-                    arraylist_output2.add(""+Integer.parseInt("111110", 2));
+                    arraylist_output2.add("" + Integer.parseInt("111110", 2));
                     return arraylist_output2;
                 case "111010": // r/1
-                    arraylist_output2.add(""+Integer.parseInt("111010", 2));
+                    arraylist_output2.add("" + Integer.parseInt("111010", 2));
                     return arraylist_output2;
                 case "011100": // s/1
-                    arraylist_output2.add(""+Integer.parseInt("011100", 2));
+                    arraylist_output2.add("" + Integer.parseInt("011100", 2));
                     return arraylist_output2;
                 case "011110": // t/1
-                    arraylist_output2.add(""+Integer.parseInt("011110", 2));
+                    arraylist_output2.add("" + Integer.parseInt("011110", 2));
                     return arraylist_output2;
                 case "101001": // u/1
-                    arraylist_output2.add(""+Integer.parseInt("101001", 2));
+                    arraylist_output2.add("" + Integer.parseInt("101001", 2));
                     return arraylist_output2;
                 case "111001": // v/1
-                    arraylist_output2.add(""+Integer.parseInt("111001", 2));
+                    arraylist_output2.add("" + Integer.parseInt("111001", 2));
                     return arraylist_output2;
                 case "010111": // w/1
-                    arraylist_output2.add(""+Integer.parseInt("010111", 2));
+                    arraylist_output2.add("" + Integer.parseInt("010111", 2));
                     return arraylist_output2;
                 case "101101": // x/1
-                    arraylist_output2.add(""+Integer.parseInt("101101", 2));
+                    arraylist_output2.add("" + Integer.parseInt("101101", 2));
                     return arraylist_output2;
                 case "101111": // y/1
-                    arraylist_output2.add(""+Integer.parseInt("101111", 2));
+                    arraylist_output2.add("" + Integer.parseInt("101111", 2));
                     return arraylist_output2;
                 case "101011": // z/1
-                    arraylist_output2.add(""+Integer.parseInt("101011", 2));
+                    arraylist_output2.add("" + Integer.parseInt("101011", 2));
                     return arraylist_output2;
                 case "001111": // entering numeric mode
-                    arraylist_output2.add(""+Integer.parseInt("001111", 2));
+                    arraylist_output2.add("" + Integer.parseInt("001111", 2));
                     return arraylist_output2;
                 case "000011": // entering grade 1 mode
-                    arraylist_output2.add(""+Integer.parseInt("000011", 2));
+                    arraylist_output2.add("" + Integer.parseInt("000011", 2));
                     return arraylist_output2;
                 case "000001": // entering uppercase mode
-                    arraylist_output2.add(""+Integer.parseInt("000001", 2));
+                    arraylist_output2.add("" + Integer.parseInt("000001", 2));
                     return arraylist_output2;
                 case "010000": // translate , to decimals
-                    arraylist_output2.add(""+Integer.parseInt("010000", 2));
+                    arraylist_output2.add("" + Integer.parseInt("010000", 2));
                     return arraylist_output2;
                 case "010011": // .
-                    arraylist_output2.add(""+Integer.parseInt("010011", 2));
+                    arraylist_output2.add("" + Integer.parseInt("010011", 2));
                     return arraylist_output2;
                 case "000010 001001":
-                    arraylist_output2.add(""+Integer.parseInt("000010", 2));
-                    arraylist_output2.add(""+Integer.parseInt("001001", 2));
+                    arraylist_output2.add("" + Integer.parseInt("000010", 2));
+                    arraylist_output2.add("" + Integer.parseInt("001001", 2));
                     return arraylist_output2;
             }
             arraylist_output2.add("shouldnt come here");
