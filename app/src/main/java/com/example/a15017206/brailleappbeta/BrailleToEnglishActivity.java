@@ -14,6 +14,14 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
         setContentView(R.layout.activity_braille_to_english);
     }
 
+    class doTranslateBtoE {
+
+        // Self-made Libraries
+        public void DecimalToBinary(){
+
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -21,7 +21,7 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
     String TAG = ">/>";
 
     TextView tvOutput;
-    EditText etInput;
+    EditText etInput, etOutput;
     Button btnDoTranslate;
     String output = "";
     ArrayList<String> arraylist_output2;
@@ -30,15 +30,14 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_english_to_braille);
 
         tvOutput = (TextView) findViewById(R.id.tvOutput);
         etInput = (EditText) findViewById(R.id.etInput);
+        etOutput = (EditText) findViewById(R.id.etOutput);
         btnDoTranslate = (Button) findViewById(R.id.btnDoTranslate);
 
         final doTranslateEtoB obj1 = new doTranslateEtoB();
-
-//        etInput.setText("Prof Ito");
 
         btnDoTranslate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,9 +56,9 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
                 arraylist_output2 = obj1.convertBinaryToDecimals2(arraylist_output2);
                 output += arraylist_output2 + "\n\n";
                 tvOutput.setText(output);
+                etOutput.setText(arraylist_output2+"");
             }
         });
-//        btnDoTranslate.performClick();
     }
 
 
@@ -330,18 +329,6 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
             return temp_arraylist;
         }
 
-//        public ArrayList convertBinaryToDecimals(ArrayList input_arraylist4) {
-//            ArrayList<String> temp_arraylist = new ArrayList<>();
-//            for (int i = 0; i < input_arraylist4.size(); i++) {
-//                String x = input_arraylist4.get(i) + "";
-//
-//                if (x.matches("(\\b[0|1]{6} [0|1]{6}\\b)|([0|1]{6}\\b)|(\\b[0|1]{6} [0|1]{6} [0|1]{6}\\b)")) {
-//                    temp_arraylist.add("" + binaryToDecimal(x));
-//                }
-//            }
-//            return temp_arraylist;
-//        }
-
         public ArrayList convertBinaryToDecimals2(ArrayList input_arraylist4) {
             ArrayList<String> temp_arraylist = new ArrayList<>();
             for (int i = 0; i < input_arraylist4.size(); i++) {
@@ -463,79 +450,6 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
             }
             return "shouldnt come here";
         }
-
-//        public int binaryToDecimal(String y) {
-//            switch (y) {
-//                case "000000":
-//                    return Integer.parseInt("000000", 2); // 0
-//                case "100000": // a/1
-//                    return Integer.parseInt("100000", 2); //32;
-//                case "110000": // b/2
-//                    return Integer.parseInt("110000", 2); //32;
-//                case "100100": // c/3
-//                    return Integer.parseInt("100100", 2); //32;
-//                case "100110": // d/4
-//                    return Integer.parseInt("100110", 2); //32;
-//                case "100010": // e/5
-//                    return Integer.parseInt("100010", 2); //32;
-//                case "110100": // f/6
-//                    return Integer.parseInt("110100", 2); //32;
-//                case "110110": // g/7
-//                    return Integer.parseInt("110110", 2); //32;
-//                case "110010": // h/8
-//                    return Integer.parseInt("110010", 2); //32;
-//                case "010100": // i/9
-//                    return Integer.parseInt("010100", 2); //32;
-//                case "010110": // j/0
-//                    return Integer.parseInt("010110", 2); //32;
-//
-//                case "101000": // k/1
-//                    return Integer.parseInt("101000", 2); //32;
-//                case "111000": // l/1
-//                    return Integer.parseInt("111000", 2); //32;
-//                case "101100": // m/1
-//                    return Integer.parseInt("101100", 2); //32;
-//                case "101110": // n/1
-//                    return Integer.parseInt("101110", 2); //32;
-//                case "101010": // o/1
-//                    return Integer.parseInt("101010", 2); //32;
-//                case "111100": // p/1
-//                    return Integer.parseInt("111100", 2); //32;
-//                case "111110": // q/1
-//                    return Integer.parseInt("111110", 2); //32;
-//                case "111010": // r/1
-//                    return Integer.parseInt("111010", 2); //32;
-//                case "011100": // s/1
-//                    return Integer.parseInt("011100", 2); //32;
-//                case "011110": // t/1
-//                    return Integer.parseInt("011110", 2); //32;
-//                case "101001": // u/1
-//                    return Integer.parseInt("101001", 2); //32;
-//                case "111001": // v/1
-//                    return Integer.parseInt("111001", 2); //32;
-//                case "010111": // w/1
-//                    return Integer.parseInt("010111", 2); //32;
-//                case "101101": // x/1
-//                    return Integer.parseInt("101101", 2); //32;
-//                case "101111": // y/1
-//                    return Integer.parseInt("101111", 2); //32;
-//                case "101011": // z/1
-//                    return Integer.parseInt("101011", 2); //32;
-//                case "001111": // entering numeric mode
-//                    return Integer.parseInt("001111", 2); //32;
-//                case "000011": // entering grade 1 mode
-//                    return Integer.parseInt("101011", 2); //32;
-//                case "000001": // entering uppercase mode
-//                    return Integer.parseInt("000001", 2); //32;
-//                case "010000": // translate , to decimals
-//                    return Integer.parseInt("010000", 2); //32;
-//                case "010011": // .
-//                    return Integer.parseInt("010011", 2);
-////                case "000010 001001":
-////                    return Integer.parseInt("000010 010101", 2);
-//            }
-//            return 0;
-//        }
 
         public ArrayList<String> binaryToDecimal2(String y) {
             ArrayList<String> arraylist_output2 = new ArrayList<>();
