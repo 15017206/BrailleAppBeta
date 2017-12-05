@@ -205,9 +205,10 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
                 // is i NOT the last index? Need to know, as we need to add a grade 1 indicator if a word is behind a numeral
                 if (i < input_arraylist.size()) {
                     Log.i(TAG, "detectNumbers: ");
-                    if (Pattern.matches("\\b[A-Za-z]{1,}\\b", input_arraylist.get(i) + "") && i > 0 && numericMode == true){
+                    if (Pattern.matches("\\b[A-Ja-j]+[A-Za-z]*\\b", input_arraylist.get(i) + "") && i > 0 && numericMode == true){
                         input_arraylist.add(i, "000011");
                         i++;
+                        numericMode = false;
                     }
                     // is there a " " or " ", "<<sth here>>" after index i? eg. 22 pens, 90 ink - need to put grade 1 indicator
 //                    if ((input_arraylist.get(i) + "").matches(" ") && (input_arraylist.get(i + 1) + "").matches("\\b[A-Ja-j]+[A-Za-z]*\\b") || (input_arraylist.get(i) + "").matches("\\b[A-Ja-j]+[A-Za-z]*\\b")) {
@@ -273,11 +274,11 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
                     }
                 }
 
-//                if (input_arraylist2.size() >= 2 && i < input_arraylist2.size()-1) {
-//                    if (Pattern.matches("\\b[A-Z]+\\b", "" + input_arraylist2.get(i + 1))){
-//                        input_arraylist2.add(i+1, "000001");
-//                    }
-//                }
+                if (input_arraylist2.size() >= 2 && i < input_arraylist2.size()-1) {
+                    if (Pattern.matches("\\b[A-Z]+\\b", "" + input_arraylist2.get(i))){
+                        input_arraylist2.add(i+1, "000001");
+                    }
+                }
 
 //                String y = "" + input_arraylist2.get(i);
 //                ArrayList<String> temporary_arraylist2 = new ArrayList<String>(Arrays.asList(y.split("")));
