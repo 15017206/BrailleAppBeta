@@ -195,7 +195,7 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
                     input_arraylist.addAll(i, temp_arraylist);
 
                     if (numericMode == false) {
-                        input_arraylist.add(i, "001111");
+                        input_arraylist.add(i, "001111"); //start of numeric mode
                         numericMode = true;
                     }
 
@@ -204,10 +204,12 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
 
                 // is i NOT the last index? Need to know, as we need to add a grade 1 indicator if a word is behind a numeral
                 if (i < input_arraylist.size()) {
-                    Log.i(TAG, "detectNumbers: ");
                     if (Pattern.matches("\\b[A-Ja-j]+[A-Za-z]*\\b", input_arraylist.get(i) + "") && i > 0 && numericMode == true) {
-                        input_arraylist.add(i, "000011");
+                        input_arraylist.add(i, "000011"); //end of numeric mode - this is a grade 1 indicator
                         i++;
+                        numericMode = false;
+                    }
+                    else if (Pattern.matches("\\b[K-Zk-z]+[K-Zk-z]*\\b", input_arraylist.get(i) + "")){
                         numericMode = false;
                     }
                     // is there a " " or " ", "<<sth here>>" after index i? eg. 22 pens, 90 ink - need to put grade 1 indicator
@@ -226,16 +228,16 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
             boolean detect_capital_letter = false;
             boolean detect_capital_word = false;
 
+            // Detects uppercase letters in front of word eg. "John", "Wiper", etc
             for (int i = 0; i < input_arraylist.size(); i++) {
-                //detects for capital letters in front of a word
-                if (detect_capital_letter = Pattern.matches("\\b[A-Z]{1}[a-z]{1,}\\b", "" + input_arraylist.get(i))) {
+                if (detect_capital_letter = Pattern.matches("\\b[A-Z]{1}[a-z]+\\b", "" + input_arraylist.get(i))) {
                     input_arraylist.add(i, "000001");
                     i++;
                 }
             }
 
+            // Detects uppercase words eg. "HELLO", "WHAT" etc
             for (int j = 0; j < input_arraylist.size(); j++) {
-                // detects for capital words
                 if (detect_capital_letter = Pattern.matches("\\b[A-Z]{2,}\\b", "" + input_arraylist.get(j))) {
 
                     ArrayList<String> temp_arraylist = new ArrayList<>();
@@ -245,6 +247,15 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
                     j = j + 2;
                 }
             }
+
+            // Detects uppercase letters individually eg. "C", "D" etc
+            for (int j = 0; j < input_arraylist.size(); j++) {
+                if (Pattern.matches("\\b[A-Z]\\b", "" + input_arraylist.get(j))) {
+                    input_arraylist.add(j, "000001");
+                    j = j + 1;
+                }
+            }
+
             return input_arraylist;
         }
 
@@ -265,47 +276,41 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
                     input_arraylist2.remove(i + temporary_arraylist.size());
                     // i = i + temporary_arraylist.size();
                 }
-
-                //STEP 3: when words like, iPhone, macPherson, when a uppercase letter in a lowercase word
-                // detects uppercase, and just add. At this point, legit words/letters should be capitalised already
-//                if (input_arraylist2.size() >= 2 && i < input_arraylist2.size()-1) {
-//                    if (Pattern.matches("\\b[a-z]+\\b", "" + input_arraylist2.get(i)) && Pattern.matches("\\b[A-Z]+\\b", "" + input_arraylist2.get(i + 1))){
-//                        input_arraylist2.add(i+1, "000001");
-//                    }
-//                }
-
-
-//                String y = "" + input_arraylist2.get(i);
-//                ArrayList<String> temporary_arraylist2 = new ArrayList<String>(Arrays.asList(y.split("")));
-//                temporary_arraylist2.remove("");
-//                Log.i(TAG, "separateToIndividualArraysLetter: " + temporary_arraylist2);
-
-//                // separate letters and words together, 32p, i7, u30s
-//                if (Pattern.matches("\\b[A-Za-z]+[\\d]+\\b|\\b[\\d]+[A-Za-z]+\\b", input_arraylist2.get(i)+"")){
-//                    String y = "" + input_arraylist2.get(i);
-//                    ArrayList<String> temporary_arraylist2 = new ArrayList<String>(Arrays.asList(y.split("")));
-//                    temporary_arraylist2.remove(0);
-//                    input_arraylist2.addAll(i, temporary_arraylist2);
-//                    input_arraylist2.remove(i+temporary_arraylist2.size());
-//                    i+= temporary_arraylist2.size();
-//
-//                }
             }
 
             // At this point, all words should be decomposed to letters already
-            //This is to test for unusual words with mixed uppercasing - like, iPhone, iOS,
+            //MISC Situation 0: This is to test for unusual words with mixed uppercasing - like, iPhone, iOS,
             // 1. If the arraylist is at least size 2 & i is less than (2-1)
             for (int i = 0; i < input_arraylist2.size(); i++) {
                 if (input_arraylist2.size() > 1 && i < input_arraylist2.size()-1 ){
-                    // If the index 0 is either lowercase/uppercase & index 1 is uppercase
+
+                    // If the index 0 is either lowercase & index 1 is uppercase
                     if (Pattern.matches("\\b[a-z]\\b", "" + input_arraylist2.get(i)) && Pattern.matches("\\b[A-Z]\\b", "" + input_arraylist2.get(i+1))) {
-                        // Add the "000001" to index 0
+                        // Add the "000001" to index 0 to add
                         input_arraylist2.add(i + 1, "000001");
                     }
                 }
-
-
             }
+
+
+            //MISC situation: an uppercase letter, followed by a numeric indicator eg. ER3, MX100, etc
+//            for (int i = 0; i < input_arraylist2.size(); i++) {
+//                if (input_arraylist2.size() > 1 && i < input_arraylist2.size()-1 ){
+//                    // If there are uppercase letters, followed by numbers together, eg. IP67, SN900, etc.
+//                    // Capitalisation does not check mix of letters, followed by words
+//                    if (Pattern.matches("\\b[A-Z]+\\b", "" + input_arraylist2.get(i)) && Pattern.matches("\\b001111\\b", "" + input_arraylist2.get(i+1))){
+//                        input_arraylist2.add(i, "000001");
+//                        i++;
+//                    }
+//                    //to ensure the first index has a capitalised indicator as well,
+//                    else if (i==0 && Pattern.matches("\\b[A-Z]+\\b", "" + input_arraylist2.get(i))){
+//                        input_arraylist2.add(i, "000001");
+//                        i++;
+//                    }
+//                }
+//            }
+
+            // MISC situation 2: a number, followed by an uppercase letter/letters, eg. 1MDB, 9MM
 
             return input_arraylist2;
         }
@@ -348,7 +353,6 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
             }
             return temp_arraylist;
         }
-
 
         //These 2 are libraries created by me
         public String wordToBinary(String x) {
