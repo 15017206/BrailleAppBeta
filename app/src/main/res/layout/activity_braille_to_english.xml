@@ -36,12 +36,36 @@
             android:text="Please inset your Braille in Decimal form in Arraylist here:" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/etDecimalInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="eg. [23, 1, 34]"
             android:inputType="textPersonName" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Or, in Binary code.." />
+
+        <EditText
+            android:id="@+id/etBinaryInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="eg. 100010 000010"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/btnT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Do Translate!" />
 
         <TextView
             android:id="@+id/tvOutput"

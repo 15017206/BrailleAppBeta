@@ -11,14 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".EnglishToBrailleActivity">
+        <activity android:name=".BrailleToEnglishActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BrailleToEnglishActivity"></activity>
+        <activity android:name=".EnglishToBrailleActivity"></activity>
     </application>
 
 </manifest>
