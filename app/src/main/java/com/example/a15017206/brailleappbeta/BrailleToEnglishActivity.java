@@ -15,10 +15,10 @@ import java.util.Collections;
 
 public class BrailleToEnglishActivity extends AppCompatActivity {
 
-    String TAG = ">>", string_output_main;
+    String TAG = ">>", string_output_main, binary_string = "";
     Boolean numericMode = false;
     EditText etBinaryInput;
-    Button btnDoTranslate;
+    Button btnTransDeci, btnTansBin;
     Boolean grade1mode = false;
     Boolean uppercaseLetter = false;
     Boolean uppercaseWord = false;
@@ -30,26 +30,25 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
         setContentView(R.layout.activity_braille_to_english);
 
         etBinaryInput = (EditText) findViewById(R.id.etBinaryInput);
-        btnDoTranslate = (Button) findViewById(R.id.btnDoTranslate);
+        btnTansBin = (Button) findViewById(R.id.btnTransBin);
+        btnTransDeci = (Button) findViewById(R.id.btnTransDeci);
 
-//        int x[] = {1, 23, 32, 46, 30, 0, 44, 20, 56, 40};
-//        String y = "";
-//        for (int i = 0; i < x.length; i++) {
-//            String temp = Integer.toBinaryString(x[i]);
-//            while (temp.length() < 6){
-//                temp = "0" + temp;
-//            }
-//            y += temp + " ";
-//        }
-//
-//        Log.i(TAG, "onCreate: " + y);
+        int x[] = {1, 23, 32, 46, 30, 0, 44, 20, 56, 40};
+//        binary_string = "000001 010111 100000 101110 011110 000000 101100 010100 111000 101000 011001 ";
 
+        // This is to convert from int[] to binary string
+        for (int i = 0; i < x.length; i++) {
+            String temp = Integer.toBinaryString(x[i]);
+            while (temp.length() < 6){
+                temp = "0" + temp;
+            }
+            binary_string += temp + " ";
+        }
+        Log.i(TAG, "from int[] to binary string is: " + binary_string);
+
+        // This is to convert from binary string to english text string
         doTranslateBtoE translateBtoE = new doTranslateBtoE();
-
-        String x = "000001 010111 100000 101110 011110 000000 101100 010100 111000 101000 011001 ";
-        ArrayList<String> temp_arraylist = new ArrayList<>(Arrays.asList(x.split(" ")));
-
-
+        ArrayList<String> temp_arraylist = new ArrayList<>(Arrays.asList(binary_string.split(" ")));
         temp_arraylist = translateBtoE.BinaryToEnglish2(temp_arraylist);
         string_output_main = translateBtoE.EnglishArrayToEnglishString(temp_arraylist);
         Log.i(TAG, "string_output_main: " + string_output_main);
