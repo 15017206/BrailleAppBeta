@@ -33,18 +33,24 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
         btnTansBin = (Button) findViewById(R.id.btnTransBin);
         btnTransDeci = (Button) findViewById(R.id.btnTransDeci);
 
-        int x[] = {1, 23, 32, 46, 30, 0, 44, 20, 56, 40};
-//        binary_string = "000001 010111 100000 101110 011110 000000 101100 010100 111000 101000 011001 ";
+        int x[] = {1, 23, 32, 46, 30, 0, 0, 44, 20, 56, 40};
 
         // This is to convert from int[] to binary string
-        for (int i = 0; i < x.length; i++) {
-            String temp = Integer.toBinaryString(x[i]);
-            while (temp.length() < 6){
-                temp = "0" + temp;
+
+        // If
+        if (x.length > 0){
+            for (int i = 0; i < x.length; i++) {
+                String temp = Integer.toBinaryString(x[i]);
+                while (temp.length() < 6){
+                    temp = "0" + temp;
+                }
+                binary_string += temp + " ";
             }
-            binary_string += temp + " ";
+            Log.i(TAG, "from int[] to binary string is: " + binary_string);
         }
-        Log.i(TAG, "from int[] to binary string is: " + binary_string);
+
+
+         binary_string = "110011 011111 100111 001000 001111 100000 110100 110100 010110";
 
         // This is to convert from binary string to english text string
         doTranslateBtoE translateBtoE = new doTranslateBtoE();
