@@ -37,6 +37,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
 
         String x = "000001 010111 100000 101110 011110 000000 101100 010100 111000 101000 011001";
         ArrayList<String> temp_arraylist = new ArrayList<>(Arrays.asList(x.split(" ")));
+
+
         temp_arraylist = translateBtoE.BinaryToEnglish2(temp_arraylist);
         string_output_main = translateBtoE.EnglishArrayToEnglishString(temp_arraylist);
         Log.i(TAG, "string_output_main: " + string_output_main);
@@ -529,6 +531,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
             return arraylist_output;
         }
 
+        // Method to convert arraylist to string
         public String EnglishArrayToEnglishString(ArrayList arrayList) {
             String string_output = "";
             while (arrayList.size() > 0) {
