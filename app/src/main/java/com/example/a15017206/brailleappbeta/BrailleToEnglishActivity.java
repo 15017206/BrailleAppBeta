@@ -32,10 +32,21 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
         etBinaryInput = (EditText) findViewById(R.id.etBinaryInput);
         btnDoTranslate = (Button) findViewById(R.id.btnDoTranslate);
 
+//        int x[] = {1, 23, 32, 46, 30, 0, 44, 20, 56, 40};
+//        String y = "";
+//        for (int i = 0; i < x.length; i++) {
+//            String temp = Integer.toBinaryString(x[i]);
+//            while (temp.length() < 6){
+//                temp = "0" + temp;
+//            }
+//            y += temp + " ";
+//        }
+//
+//        Log.i(TAG, "onCreate: " + y);
 
         doTranslateBtoE translateBtoE = new doTranslateBtoE();
 
-        String x = "000001 010111 100000 101110 011110 000000 101100 010100 111000 101000 011001";
+        String x = "000001 010111 100000 101110 011110 000000 101100 010100 111000 101000 011001 ";
         ArrayList<String> temp_arraylist = new ArrayList<>(Arrays.asList(x.split(" ")));
 
 
