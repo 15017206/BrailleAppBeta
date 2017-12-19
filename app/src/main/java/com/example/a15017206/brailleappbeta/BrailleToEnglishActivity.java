@@ -15,13 +15,14 @@ import java.util.Collections;
 
 public class BrailleToEnglishActivity extends AppCompatActivity {
 
-    String TAG = ">>";
+    String TAG = ">>", string_output_main;
     Boolean numericMode = false;
     EditText etBinaryInput;
     Button btnDoTranslate;
     Boolean grade1mode = false;
     Boolean uppercaseLetter = false;
     Boolean uppercaseWord = false;
+    Boolean capitalPassage = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,22 +35,20 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
 
         doTranslateBtoE translateBtoE = new doTranslateBtoE();
 
-        String x = "000001 011100 101000";
+        String x = "000001 010111 100000 101110 011110 000000 101100 010100 111000 101000 011001";
         ArrayList<String> temp_arraylist = new ArrayList<>(Arrays.asList(x.split(" ")));
-        translateBtoE.BinaryToEnglish2(temp_arraylist);
+        temp_arraylist = translateBtoE.BinaryToEnglish2(temp_arraylist);
+        string_output_main = translateBtoE.EnglishArrayToEnglishString(temp_arraylist);
+        Log.i(TAG, "string_output_main: " + string_output_main);
     }
 
     class doTranslateBtoE {
-
-        // Self-made Libraries
-        public void DecimalToBinary() {
-        }
-
-        // On-Hold library
+        //library
         public String BinaryToEnglish(String input_binary) {
             switch (input_binary) {
                 case "000000": // " "
                     uppercaseWord = false;
+                    numericMode = false;
                     return " ";
                 case "100000": // a/1
                     if (numericMode) {
@@ -59,6 +58,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             uppercaseLetter = false;
                             return "A";
                         } else if (uppercaseWord) {
+                            return "A";
+                        } else if (capitalPassage) {
                             return "A";
                         } else {
                             return "a";
@@ -73,6 +74,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             return "B";
                         } else if (uppercaseWord) {
                             return "B";
+                        } else if (capitalPassage) {
+                            return "B";
                         } else {
                             return "b";
                         }
@@ -85,6 +88,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             uppercaseLetter = false;
                             return "C";
                         } else if (uppercaseWord) {
+                            return "C";
+                        } else if (capitalPassage) {
                             return "C";
                         } else {
                             return "c";
@@ -99,6 +104,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             return "D";
                         } else if (uppercaseWord) {
                             return "D";
+                        } else if (capitalPassage) {
+                            return "D";
                         } else {
                             return "d";
                         }
@@ -111,6 +118,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             uppercaseLetter = false;
                             return "E";
                         } else if (uppercaseWord) {
+                            return "E";
+                        } else if (capitalPassage) {
                             return "E";
                         } else {
                             return "e";
@@ -125,6 +134,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             return "F";
                         } else if (uppercaseWord) {
                             return "F";
+                        } else if (capitalPassage) {
+                            return "F";
                         } else {
                             return "f";
                         }
@@ -137,6 +148,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             uppercaseLetter = false;
                             return "G";
                         } else if (uppercaseWord) {
+                            return "G";
+                        } else if (capitalPassage) {
                             return "G";
                         } else {
                             return "g";
@@ -151,11 +164,13 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             return "H";
                         } else if (uppercaseWord) {
                             return "H";
+                        } else if (capitalPassage) {
+                            return "H";
                         } else {
                             return "h";
                         }
                     }
-                case "0110100": // i/9
+                case "010100": // i/9
                     if (numericMode) {
                         return "9";
                     } else {
@@ -163,6 +178,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             uppercaseLetter = false;
                             return "I";
                         } else if (uppercaseWord) {
+                            return "I";
+                        } else if (capitalPassage) {
                             return "I";
                         } else {
                             return "i";
@@ -177,6 +194,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             return "J";
                         } else if (uppercaseWord) {
                             return "J";
+                        } else if (capitalPassage) {
+                            return "J";
                         } else {
                             return "j";
                         }
@@ -190,6 +209,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "K";
                     } else if (uppercaseWord) {
                         return "K";
+                    } else if (capitalPassage) {
+                        return "K";
                     } else {
                         return "k";
                     }
@@ -200,6 +221,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         uppercaseLetter = false;
                         return "L";
                     } else if (uppercaseWord) {
+                        return "L";
+                    } else if (capitalPassage) {
                         return "L";
                     } else {
                         return "l";
@@ -212,6 +235,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "M";
                     } else if (uppercaseWord) {
                         return "M";
+                    } else if (capitalPassage) {
+                        return "M";
                     } else {
                         return "m";
                     }
@@ -221,6 +246,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         uppercaseLetter = false;
                         return "N";
                     } else if (uppercaseWord) {
+                        return "N";
+                    } else if (capitalPassage) {
                         return "N";
                     } else {
                         return "n";
@@ -232,6 +259,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "O";
                     } else if (uppercaseWord) {
                         return "O";
+                    } else if (capitalPassage) {
+                        return "O";
                     } else {
                         return "o";
                     }
@@ -241,6 +270,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         uppercaseLetter = false;
                         return "P";
                     } else if (uppercaseWord) {
+                        return "P";
+                    } else if (capitalPassage) {
                         return "P";
                     } else {
                         return "p";
@@ -252,6 +283,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "Q";
                     } else if (uppercaseWord) {
                         return "Q";
+                    } else if (capitalPassage) {
+                        return "Q";
                     } else {
                         return "q";
                     }
@@ -261,6 +294,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         uppercaseLetter = false;
                         return "R";
                     } else if (uppercaseWord) {
+                        return "R";
+                    } else if (capitalPassage) {
                         return "R";
                     } else {
                         return "r";
@@ -272,6 +307,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "S";
                     } else if (uppercaseWord) {
                         return "S";
+                    } else if (capitalPassage) {
+                        return "S";
                     } else {
                         return "s";
                     }
@@ -281,6 +318,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         uppercaseLetter = false;
                         return "T";
                     } else if (uppercaseWord) {
+                        return "T";
+                    } else if (capitalPassage) {
                         return "T";
                     } else {
                         return "t";
@@ -292,6 +331,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "U";
                     } else if (uppercaseWord) {
                         return "U";
+                    } else if (capitalPassage) {
+                        return "U";
                     } else {
                         return "u";
                     }
@@ -301,6 +342,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         uppercaseLetter = false;
                         return "V";
                     } else if (uppercaseWord) {
+                        return "V";
+                    } else if (capitalPassage) {
                         return "V";
                     } else {
                         return "v";
@@ -312,6 +355,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "W";
                     } else if (uppercaseWord) {
                         return "W";
+                    } else if (capitalPassage) {
+                        return "W";
                     } else {
                         return "w";
                     }
@@ -321,6 +366,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         uppercaseLetter = false;
                         return "X";
                     } else if (uppercaseWord) {
+                        return "X";
+                    } else if (capitalPassage) {
                         return "X";
                     } else {
                         return "x";
@@ -332,6 +379,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "Y";
                     } else if (uppercaseWord) {
                         return "Y";
+                    } else if (capitalPassage) {
+                        return "Y";
                     } else {
                         return "y";
                     }
@@ -342,6 +391,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "Z";
                     } else if (uppercaseWord) {
                         return "Z";
+                    } else if (capitalPassage) {
+                        return "Z";
                     } else {
                         return "z";
                     }
@@ -351,11 +402,34 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                 case "000011": // entering grade 1
                     numericMode = false;
                     return "shouldnt come here 2";
-                case "000001":
+                case "000001": // uppercase letter
                     uppercaseLetter = true;
                     return "shouldnt come here 2";
-                case "000001 000001":
+
+
+                case "011010": // "!"
+                    return "!";
+                case "010011": // "."
+                    return ".";
+                case "011001": // "?"
+                    return "?";
+                case "001001": // "-"/hyphen
+                    return "-";
+
+
+                case "000010 001001": // short dash/en dash "-"
+                    return "--";
+
+                case "000001 000001": // uppercase word
                     uppercaseWord = true;
+                    return "shouldnt come here 2";
+
+
+                case "000001 000001 000001": // capital passage indicator
+                    capitalPassage = true;
+                    return "shouldnt come here 2";
+                case "000001 001000": // capital passage terminator
+                    capitalPassage = false;
                     return "shouldnt come here 2";
 
                 case "000001 000010 110001": // "("
@@ -367,13 +441,13 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
             return "shouldnt come here 1";
         }
 
-        // Method doing computation and contains library together
+        // Method doing computation - it uses the library
         public ArrayList BinaryToEnglish2(ArrayList arraylist_input_binary) {
             ArrayList<String> arraylist_output = new ArrayList();
 
             //Using a for loop to traverse the arraylist
             while (arraylist_input_binary.size() > 0) {
-
+                Log.i(TAG, "currently testing index value: " + arraylist_input_binary.get(0));
                 // if arraylist has 2 index greater than i
                 if (arraylist_input_binary.size() >= 3) {
                     String index = arraylist_input_binary.get(0) + "";
@@ -383,21 +457,22 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                     // Eg. if first 3 indexes matches  "("
                     String concatenated = index + " " + index1 + " " + index2;
                     String after_using_library = BinaryToEnglish(concatenated);
-                    Log.i(TAG, "BinaryToEnglish2: " + concatenated);
-                    Log.i(TAG, "after using the library: " + after_using_library);
+//                    Log.i(TAG, "BinaryToEnglish2: " + concatenated);
+//                    Log.i(TAG, "after using the library index >= 3: " + after_using_library);
 
-                    if (!after_using_library.contains("shouldnt come here 1")){
-                        if (!after_using_library.contains("shouldnt come here 2")){
+                    if (!after_using_library.contains("shouldnt come here 1")) {
+                        if (!after_using_library.contains("shouldnt come here 2")) {
                             arraylist_output.add(after_using_library);
                             arraylist_input_binary.remove(0);
                             arraylist_input_binary.remove(0);
                             arraylist_input_binary.remove(0);
-                        }
-                        else {
+                        } else {
                             arraylist_input_binary.remove(0);
                             arraylist_input_binary.remove(0);
                             arraylist_input_binary.remove(0);
                         }
+                    } else {
+
                     }
 
 
@@ -411,44 +486,57 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                     // Eg. if first 2 indexes matches  "..."
                     String concatenated = index + " " + index1;
                     String after_using_library = BinaryToEnglish(concatenated);
-                    Log.i(TAG, "BinaryToEnglish2: " + concatenated);
-                    Log.i(TAG, "after using the library: " + after_using_library);
+//                    Log.i(TAG, "BinaryToEnglish2: " + concatenated);
+//                    Log.i(TAG, "after using the library index >= 2: " + after_using_library);
 
-                    if (!after_using_library.contains("shouldnt come here 1")){
-                        if (!after_using_library.contains("shouldnt come here 2")){
+                    if (!after_using_library.contains("shouldnt come here 1")) {
+                        if (!after_using_library.contains("shouldnt come here 2")) {
                             arraylist_output.add(after_using_library);
                             arraylist_input_binary.remove(0);
                             arraylist_input_binary.remove(0);
-                        }
-                        else {
+                        } else {
                             arraylist_input_binary.remove(0);
                             arraylist_input_binary.remove(0);
                         }
                     }
+                } else {
+
                 }
 
                 // Those that do not satisfy the previous 2 requirements will be converted here - single character letters/numbers
                 if (arraylist_input_binary.size() >= 1) {
                     String x = arraylist_input_binary.get(0) + "";
                     String y = BinaryToEnglish(x);
-
-                    if (!y.contains("shouldnt come here 1")){
-                        if (!y.contains("shouldnt come here 2")){
+//                    Log.i(TAG, "after using the library index >= 1: " + y);
+                    if (!y.contains("shouldnt come here 1")) {
+                        if (!y.contains("shouldnt come here 2")) {
                             arraylist_output.add(y);
                             arraylist_input_binary.remove(0);
-                        }
-                        else {
+                        } else {
                             arraylist_input_binary.remove(0);
                         }
                     }
 
                     Log.i(TAG, "single char value is: " + x);
+                } else {
+
                 }
+
             }
 
             Log.i(TAG, "arraylist_output is: " + arraylist_output);
 
             return arraylist_output;
+        }
+
+        public String EnglishArrayToEnglishString(ArrayList arrayList) {
+            String string_output = "";
+            while (arrayList.size() > 0) {
+                string_output += arrayList.get(0) + "";
+                arrayList.remove(0);
+            }
+
+            return string_output;
         }
     }
 
