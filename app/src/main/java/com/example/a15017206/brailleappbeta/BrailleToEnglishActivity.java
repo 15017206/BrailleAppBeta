@@ -38,10 +38,10 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
         // This is to convert from int[] to binary string
 
         // If
-        if (x.length > 0){
+        if (x.length > 0) {
             for (int i = 0; i < x.length; i++) {
                 String temp = Integer.toBinaryString(x[i]);
-                while (temp.length() < 6){
+                while (temp.length() < 6) {
                     temp = "0" + temp;
                 }
                 binary_string += temp + " ";
@@ -50,7 +50,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
         }
 
 
-         binary_string = "110011 011111 100111 001000 001111 100000 110100 110100 010110";
+        binary_string = "110011 011111 100111 001000 001111 100000 110100 110100 010110";
 
         // This is to convert from binary string to english text string
         doTranslateBtoE translateBtoE = new doTranslateBtoE();
@@ -417,7 +417,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                 case "001111": // entering numeric mode
                     numericMode = true;
                     return "shouldnt come here 2";
-                case "000011": // entering grade 1
+                case "000011": // entering grade 1/ grade 1 indicator
                     numericMode = false;
                     return "shouldnt come here 2";
                 case "000001": // uppercase letter
@@ -425,18 +425,104 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                     return "shouldnt come here 2";
 
 
+
+
+
+                case "001000": // "'"/apostrophe
+                    return "'";
+
+
+                case "000100 111101": // "&"
+                    return "&";
+                case "000010 001010":
+                    return "*"; // "*"
+                case "000010 110001":
+                    return "(";
+                case "000010 001110":
+                    return ")";
+                case "000101 110001":
+                    return "[";
+                case "000101 001110":
+                    return "]";
+                case "000111 110001":
+                    return "{";
+                case "000111 001110":
+                    return "}";
+                case "000100 110001":
+                    return "<";
+                case "000100 001110":
+                    return ">";
+                case "000111 010011":
+                    return "•";
+                case "010000":
+                    return ",";
+                case "000100 000001 100111":
+                    return "†";
+                case "000100 000001 110111":
+                    return "‡";
+                case "000010 001001": // short dash/en dash "-"
+                    return "–";
+                case "000010 000001 001001":// long dash/em dash "—"
+                    return "—";
+                case "000010 010000": // ditto mark
+                    return "”";
+                case "010011 010011 010011":
+                    return "…";
                 case "011010": // "!"
                     return "!";
-                case "010011": // "."
-                    return ".";
-                case "011001": // "?"
-                    return "?";
+                case "000110 101101":
+                    return "♀";
+                case "000110 101111":
+                    return "♂";
+                case "000111 100111":
+                    return "#";
                 case "001001": // "-"/hyphen
                     return "-";
+                case "000110 100100":
+                    return "©";
+                case "000110 111010":
+                    return "®";
+                case "000110 011110":
+                    return "™";
+                case "010011": // "."
+                    return ".";
+                case "011001": // "?" / opening nonspecific quotation mark
+                    return "?";
+                case "001011":
+                    return "'"; // closing nonspecific quotation mark
+                case "000110 011001": // opening double quotation mark
+                    return "“";
+                case "000110 001011": // closing double quotation mark
+                    return "”";
+                case "000001 011001": // opening single quotation mark
+                    return "‘";
+                case "000001 001011": // closing single quotation mark
+                    return "’";
+                case "000111 011001":
+                    return "«";
+                case "000111 001011":
+                    return "»";
+                case "011000":
+                    return ";";
+                case "010010":
+                    return ":";
+                case "000111 100001": // Backslash
+                    return "\\";
+                case "000111 001100":
+                    return "/";
+                case "000101 001001":
+                    return "_";
+                case "000100 100000":
+                    return "@";
+                case "000010": // Numeric space/Line continuation indicator. NOTE: This may conflict with the normal space, but it does not stop numeric mode
+                    return " ";
 
 
-                case "000010 001001": // short dash/en dash "-"
-                    return "--";
+
+
+
+
+
 
                 case "000001 000001": // uppercase word
                     uppercaseWord = true;
@@ -464,6 +550,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
             ArrayList<String> arraylist_output = new ArrayList();
 
             //Using a for loop to traverse the arraylist
+            // If this keeps repeating in logcat, means the value is not recognised in library
             while (arraylist_input_binary.size() > 0) {
                 Log.i(TAG, "currently testing index value: " + arraylist_input_binary.get(0));
                 // if arraylist has 2 index greater than i
