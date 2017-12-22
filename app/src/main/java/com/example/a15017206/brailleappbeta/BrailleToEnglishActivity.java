@@ -22,7 +22,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
     Boolean grade1mode = false;
     Boolean uppercaseLetter = false;
     Boolean uppercaseWord = false;
-    Boolean capitalPassage = false;
+    Boolean uppercasePassage = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
         }
 
 
-        binary_string = "110011 011111 100111 001000 001111 100000 110100 110100 010110";
+        binary_string = "000001 000001 100010 111000 100010 100100 011110 111010 010100 100100 100000 111000 000000 000001 000001 111010 101010 101010 101100";
 
         // This is to convert from binary string to english text string
         doTranslateBtoE translateBtoE = new doTranslateBtoE();
@@ -77,7 +77,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             return "A";
                         } else if (uppercaseWord) {
                             return "A";
-                        } else if (capitalPassage) {
+                        } else if (uppercasePassage) {
                             return "A";
                         } else {
                             return "a";
@@ -92,7 +92,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             return "B";
                         } else if (uppercaseWord) {
                             return "B";
-                        } else if (capitalPassage) {
+                        } else if (uppercasePassage) {
                             return "B";
                         } else {
                             return "b";
@@ -107,7 +107,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             return "C";
                         } else if (uppercaseWord) {
                             return "C";
-                        } else if (capitalPassage) {
+                        } else if (uppercasePassage) {
                             return "C";
                         } else {
                             return "c";
@@ -122,7 +122,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             return "D";
                         } else if (uppercaseWord) {
                             return "D";
-                        } else if (capitalPassage) {
+                        } else if (uppercasePassage) {
                             return "D";
                         } else {
                             return "d";
@@ -137,7 +137,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             return "E";
                         } else if (uppercaseWord) {
                             return "E";
-                        } else if (capitalPassage) {
+                        } else if (uppercasePassage) {
                             return "E";
                         } else {
                             return "e";
@@ -152,7 +152,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             return "F";
                         } else if (uppercaseWord) {
                             return "F";
-                        } else if (capitalPassage) {
+                        } else if (uppercasePassage) {
                             return "F";
                         } else {
                             return "f";
@@ -167,7 +167,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             return "G";
                         } else if (uppercaseWord) {
                             return "G";
-                        } else if (capitalPassage) {
+                        } else if (uppercasePassage) {
                             return "G";
                         } else {
                             return "g";
@@ -182,7 +182,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             return "H";
                         } else if (uppercaseWord) {
                             return "H";
-                        } else if (capitalPassage) {
+                        } else if (uppercasePassage) {
                             return "H";
                         } else {
                             return "h";
@@ -197,7 +197,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             return "I";
                         } else if (uppercaseWord) {
                             return "I";
-                        } else if (capitalPassage) {
+                        } else if (uppercasePassage) {
                             return "I";
                         } else {
                             return "i";
@@ -212,7 +212,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                             return "J";
                         } else if (uppercaseWord) {
                             return "J";
-                        } else if (capitalPassage) {
+                        } else if (uppercasePassage) {
                             return "J";
                         } else {
                             return "j";
@@ -227,7 +227,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "K";
                     } else if (uppercaseWord) {
                         return "K";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "K";
                     } else {
                         return "k";
@@ -240,7 +240,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "L";
                     } else if (uppercaseWord) {
                         return "L";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "L";
                     } else {
                         return "l";
@@ -253,7 +253,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "M";
                     } else if (uppercaseWord) {
                         return "M";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "M";
                     } else {
                         return "m";
@@ -265,7 +265,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "N";
                     } else if (uppercaseWord) {
                         return "N";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "N";
                     } else {
                         return "n";
@@ -277,7 +277,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "O";
                     } else if (uppercaseWord) {
                         return "O";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "O";
                     } else {
                         return "o";
@@ -289,7 +289,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "P";
                     } else if (uppercaseWord) {
                         return "P";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "P";
                     } else {
                         return "p";
@@ -301,7 +301,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "Q";
                     } else if (uppercaseWord) {
                         return "Q";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "Q";
                     } else {
                         return "q";
@@ -313,7 +313,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "R";
                     } else if (uppercaseWord) {
                         return "R";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "R";
                     } else {
                         return "r";
@@ -325,7 +325,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "S";
                     } else if (uppercaseWord) {
                         return "S";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "S";
                     } else {
                         return "s";
@@ -337,7 +337,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "T";
                     } else if (uppercaseWord) {
                         return "T";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "T";
                     } else {
                         return "t";
@@ -349,7 +349,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "U";
                     } else if (uppercaseWord) {
                         return "U";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "U";
                     } else {
                         return "u";
@@ -361,7 +361,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "V";
                     } else if (uppercaseWord) {
                         return "V";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "V";
                     } else {
                         return "v";
@@ -373,7 +373,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "W";
                     } else if (uppercaseWord) {
                         return "W";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "W";
                     } else {
                         return "w";
@@ -385,7 +385,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "X";
                     } else if (uppercaseWord) {
                         return "X";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "X";
                     } else {
                         return "x";
@@ -397,7 +397,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "Y";
                     } else if (uppercaseWord) {
                         return "Y";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "Y";
                     } else {
                         return "y";
@@ -409,7 +409,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                         return "Z";
                     } else if (uppercaseWord) {
                         return "Z";
-                    } else if (capitalPassage) {
+                    } else if (uppercasePassage) {
                         return "Z";
                     } else {
                         return "z";
@@ -423,9 +423,6 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                 case "000001": // uppercase letter
                     uppercaseLetter = true;
                     return "shouldnt come here 2";
-
-
-
 
 
                 case "001000": // "'"/apostrophe
@@ -518,28 +515,153 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                     return " ";
 
 
-
-
-
-
-
-
                 case "000001 000001": // uppercase word
                     uppercaseWord = true;
                     return "shouldnt come here 2";
 
 
                 case "000001 000001 000001": // capital passage indicator
-                    capitalPassage = true;
+                    uppercasePassage = true;
                     return "shouldnt come here 2";
                 case "000001 001000": // capital passage terminator
-                    capitalPassage = false;
+                    uppercasePassage = false;
                     return "shouldnt come here 2";
 
                 case "000001 000010 110001": // "("
                     return "("; // This is a large opened bracket
                 case "000001 000010 001110":
                     return ")";// This is a large closed bracket
+
+                case "":
+                    return "";
+                case "000111":
+                    return "shouldnt come here 2";
+
+                // Strong wordsigns
+                case "000000 100001 000000":
+                    return "child";
+                case "000000 110011 000000":
+                    return "out";
+                case "000000 100101 000000":
+                    return "shall";
+                case "000000 001100 000000":
+                    return "still";
+                case "000000 100111 000000":
+                    return "this";
+                case "000000 100011 000000":
+                    return "which";
+
+
+                // Strong Groupsigns - contracted braille
+                case "001110":
+                    if (uppercaseWord) {
+                        return "AR";
+                    } else if (uppercasePassage){
+                        return "AR";
+                    } else {
+                        return "ar";
+                    }
+                case "100001":
+                    if (uppercaseWord) {
+                        return "CH";
+                    } else if (uppercasePassage){
+                        return "CH";
+                    } else {
+                        return "ch";
+                    }
+                case "110101":
+                    if (uppercaseWord) {
+                        return "ED";
+                    } else if (uppercasePassage){
+                        return "ED";
+                    } else {
+                        return "ed";
+                    }
+                case "110111":
+                    if (uppercaseWord) {
+                        return "ER";
+                    } else if (uppercasePassage){
+                        return "ER";
+                    } else {
+                        return "er";
+                    }
+                case "110001":
+                    if (uppercaseWord) {
+                        return "GH";
+                    } else if (uppercasePassage){
+                        return "GH";
+                    } else {
+                        return "gh";
+                    }
+                case "001101":
+                    if (uppercaseWord) {
+                        return "ING";
+                    } else if (uppercasePassage){
+                        return "ING";
+                    } else {
+                        return "ing";
+                    }
+                case "110011":
+                    if (uppercaseWord) {
+                        return "OU";
+                    } else if (uppercasePassage){
+                        return "OU";
+                    } else {
+                        return "ou";
+                    }
+                case "010101":
+                    if (uppercaseWord) {
+                        return "OW";
+                    } else if (uppercasePassage){
+                        return "OW";
+                    } else {
+                        return "ow";
+                    }
+                case "100101":
+                    if (uppercaseWord) {
+                        return "SH";
+                    } else if (uppercasePassage){
+                        return "SH";
+                    } else {
+                        return "sh";
+                    }
+                case "001100":
+                    if (uppercaseWord) {
+                        return "ST";
+                    } else if (uppercasePassage){
+                        return "ST";
+                    } else {
+                        return "st";
+                    }
+                case "100111":
+                    if (uppercaseWord) {
+                        return "TH";
+                    } else if (uppercasePassage){
+                        return "TH";
+                    } else {
+                        return "th";
+                    }
+                case "100011":
+                    if (uppercaseWord) {
+                        return "WH";
+                    } else if (uppercasePassage){
+                        return "WH";
+                    } else {
+                        return "wh";
+                    }
+                // Strong contractions
+                case "111101":
+                    return "and";
+                case "111111":
+                    return "for";
+                case "111011":
+                    return "of";
+                case "011101":
+                    return "the";
+                case "011111":
+                    return "with";
+
+                // Lower Groupsigns & lower Wordsigns are problematic
 
             }
             return "shouldnt come here 1";
