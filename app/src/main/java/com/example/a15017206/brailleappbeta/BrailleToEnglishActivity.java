@@ -661,6 +661,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                 case "011111":
                     return "with";
 
+
+                // Not implemented: final letter groupsigns, initial letter contractions
                 // Lower Groupsigns & lower Wordsigns are problematic
 
             }
