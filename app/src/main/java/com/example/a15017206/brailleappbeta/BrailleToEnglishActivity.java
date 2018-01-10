@@ -57,6 +57,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
         ArrayList<String> temp_arraylist = new ArrayList<>(Arrays.asList(binary_string.split(" ")));
         temp_arraylist = translateBtoE.BinaryToEnglish2(temp_arraylist);
         string_output_main = translateBtoE.EnglishArrayToEnglishString(temp_arraylist);
+        Log.i(TAG, "temp_arraylist: " + temp_arraylist);
         Log.i(TAG, "string_output_main: " + string_output_main);
     }
 

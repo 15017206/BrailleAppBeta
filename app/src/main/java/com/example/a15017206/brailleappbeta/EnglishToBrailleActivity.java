@@ -447,6 +447,8 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
                     return "010011";
                 case "-":
                     return "000010 001001";
+                case "?":
+                    return "011001";
             }
             return "shouldnt come here";
         }
@@ -549,6 +551,9 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
                     arraylist_output2.add("" + Integer.parseInt("010000", 2));
                     return arraylist_output2;
                 case "010011": // .
+                    arraylist_output2.add("" + Integer.parseInt("010011", 2));
+                    return arraylist_output2;
+                case "011001": // ?
                     arraylist_output2.add("" + Integer.parseInt("010011", 2));
                     return arraylist_output2;
                 case "000010 001001":
