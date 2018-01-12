@@ -33,7 +33,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
         btnTansBin = (Button) findViewById(R.id.btnTransBin);
         btnTransDeci = (Button) findViewById(R.id.btnTransDeci);
 
-        int x[] = {1, 23, 32, 46, 30, 0, 0, 44, 20, 56, 40};
+        // This is the array to enter the numbers inside
+        int x[] = {1, 50, 34, 56, 56, 42, 16, 0, 50, 42, 23, 0, 32, 58, 34, 0, 47, 42, 41, 25};
 
         // This is to convert from int[] to binary string
 
@@ -49,8 +50,8 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
             Log.i(TAG, "from int[] to binary string is: " + binary_string);
         }
 
-
-        binary_string = "000001 000001 100010 111000 100010 100100 011110 111010 010100 100100 100000 111000 000000 000001 000001 111010 101010 101010 101100";
+        //    This is to enter binary code directly. It should be commented away when passing code over
+        //    binary_string = "000001 000001 100010 111000 100010 100100 011110 111010 010100 100100 100000 111000 000000 000001 000001 111010 101010 101010 101100";
 
         // This is to convert from binary string to english text string
         doTranslateBtoE translateBtoE = new doTranslateBtoE();

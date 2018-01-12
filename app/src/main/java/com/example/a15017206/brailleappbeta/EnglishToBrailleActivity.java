@@ -554,7 +554,7 @@ public class EnglishToBrailleActivity extends AppCompatActivity {
                     arraylist_output2.add("" + Integer.parseInt("010011", 2));
                     return arraylist_output2;
                 case "011001": // ?
-                    arraylist_output2.add("" + Integer.parseInt("010011", 2));
+                    arraylist_output2.add("" + Integer.parseInt("011001", 2));
                     return arraylist_output2;
                 case "000010 001001":
                     arraylist_output2.add("" + Integer.parseInt("000010", 2));
