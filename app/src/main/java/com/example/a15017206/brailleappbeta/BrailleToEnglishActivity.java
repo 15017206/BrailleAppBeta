@@ -663,7 +663,34 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                 case "011111":
                     return "with";
 
-                // Not implemented: final letter groupsigns, initial letter contractions
+                // Final letter groupsigns
+                // dots 56:
+                case "000011 100010":
+                    return "ence";
+                case "000011 110110":
+                    return "ong";
+                case "000011 111000":
+                    return "ful";
+                case "000011 101110":
+                    return "tion";
+                case "000011 011100":
+                    return "ness";
+                case "000011 011110":
+                    return "ment";
+                case "000011 101111":
+                    return "ity";
+
+                //dots 46:
+                case "000101 100110":
+                    return "ound";
+                case "000101 100010":
+                    return "ance";
+                case "000101 101110":
+                    return "sion";
+                case "000101 011100":
+                    return "less";
+                case "000101 011110":
+                    return "ount";
 
                 // initial letter contraction:-
                 // dots 456:-
