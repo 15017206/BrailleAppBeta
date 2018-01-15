@@ -663,8 +663,81 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                 case "011111":
                     return "with";
 
-
                 // Not implemented: final letter groupsigns, initial letter contractions
+
+                // initial letter contraction:-
+                // dots 456:-
+                case "000111 100100":
+                    return "cannot";
+                case "000111 110010":
+                    return "had";
+                case "000111 101100":
+                    return "many";
+                case "000111 011100":
+                    return "spirit";
+                case "000111 011101":
+                    return "their";
+                case "000111 010111":
+                    return "world";
+
+                // dots 5:-
+                case "000010 100001":
+                    return "character";
+                case "000010 100110":
+                    return "day";
+                case "000010 100010":
+                    return "ever";
+                case "000010 110100":
+                    return "father";
+                case "000010 110010":
+                    return "here";
+                case "000010 101000":
+                    return "know";
+                case "000010 111000":
+                    return "lord";
+                case "000010 101100":
+                    return "mother";
+                case "000010 101110":
+                    return "name";
+                case "000010 101010":
+                    return "one";
+                case "000010 110011":
+                    return "ought";
+                case "000010 111100":
+                    return "part";
+                case "000010 111110":
+                    return "question";
+                case "000010 111010":
+                    return "right";
+                case "000010 011100":
+                    return "some";
+                case "000010 011101":
+                    return "there";
+                case "000010 011110":
+                    return "time";
+                case "000010 100111":
+                    return "through";
+                case "000010 101001":
+                    return "under";
+                case "000010 100011":
+                    return "where";
+                case "000010 010111":
+                    return "work";
+                case "000010 101111":
+                    return "young";
+
+                // dots 45:-
+                case "000110 011101":
+                    return "these";
+                case "000110 100111":
+                    return "those";
+                case "000110 101001":
+                    return "upon";
+                case "000110 100011":
+                    return "whose";
+                case "000110 010111":
+                    return "word";
+
                 // Lower Groupsigns & lower Wordsigns are problematic
 
             }
