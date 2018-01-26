@@ -33,12 +33,10 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
         btnTansBin = (Button) findViewById(R.id.btnTransBin);
         btnTransDeci = (Button) findViewById(R.id.btnTransDeci);
 
-        // This is the array to enter the numbers inside
+        // 1. This is the array to enter the numbers inside - This is the input Array
         int x[] = {1, 50, 34, 56, 56, 42, 16, 0, 50, 42, 23, 0, 32, 58, 34, 0, 47, 42, 41, 25};
 
-        // This is to convert from int[] to binary string
-
-        // If
+        // 2. Converting the decimal to binary String array
         if (x.length > 0) {
             for (int i = 0; i < x.length; i++) {
                 String temp = Integer.toBinaryString(x[i]);
@@ -57,9 +55,14 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
         doTranslateBtoE translateBtoE = new doTranslateBtoE();
         ArrayList<String> temp_arraylist = new ArrayList<>(Arrays.asList(binary_string.split(" ")));
         temp_arraylist = translateBtoE.BinaryToEnglish2(temp_arraylist);
+
+        // 3. Concat the String Array to String
         string_output_main = translateBtoE.EnglishArrayToEnglishString(temp_arraylist);
         Log.i(TAG, "temp_arraylist: " + temp_arraylist);
         Log.i(TAG, "string_output_main: " + string_output_main);
+        Log.i(TAG, "x.length is: " + x.length);
+
+        // 4. Kobayashi can use the string_output_main
     }
 
     class doTranslateBtoE {
@@ -459,7 +462,7 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                     return "†";
                 case "000100 000001 110111":
                     return "‡";
-                case "000010 001001": // short dash/en dash "-"
+                case "000010 001001": // short dash/en dash "-"/minus sign
                     return "–";
                 case "000010 000001 001001":// long dash/em dash "—"
                     return "—";
@@ -515,7 +518,62 @@ public class BrailleToEnglishActivity extends AppCompatActivity {
                     return "@";
                 case "000010": // Numeric space/Line continuation indicator. NOTE: This may conflict with the normal space, but it does not stop numeric mode
                     return " ";
-
+                case "000010 011010":
+                    return "+";
+                case "000010 011001":
+                    return "x";
+                case "000010 001100":
+                    return "÷";
+                case "000010 000010 011011":
+                    return "=";
+                case "000100 010001":
+                    return "^";
+                case "000100 100100":
+                    return "¢";
+                case "000100 011100":
+                    return "$";
+                case "000100 100010":
+                    return "€";
+                case "000100 111000":
+                    return "£";
+                case "000100 101111":
+                    return "円";
+                case "000110 010110":
+                    return "°";
+                case "011011":
+                    return "'";
+                case "011011 011011":
+                    return "″";
+                case "000101 001011":
+                    return "%";
+                case "000110 111100":
+                    return "¶";
+                case "000110 011100":
+                    return "§";
+                case "000100 001010":
+                    return "~";
+                case "110011 101010":
+                    return "→";
+                case "110011 010101":
+                    return "←";
+                case "110011 100101":
+                    return "↓";
+                case "110011 001101":
+                    return "↑";
+                case "110011 011100":
+                    return "↗";
+                case "110011 110001":
+                    return "↘";
+                case "110011 001110":
+                    return "↙";
+                case "110011 100011":
+                    return "↖";
+                case "001111 110001":
+                    return "♭";
+                case "001111 100001":
+                    return "♮";
+                case "001111 100101":
+                    return "♯";
 
                 case "000001 000001": // uppercase word
                     uppercaseWord = true;
